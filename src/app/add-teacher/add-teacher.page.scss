@@ -1,0 +1,85 @@
+.main-container {
+    padding-top: 4rem;
+    width: 85vw;
+    overflow: scroll;
+}
+
+.top-rectangle {
+    background-color: var(--ion-color-primary);
+    height: 6rem;
+    border-radius: 0px 0px 20px 20px;
+    position: fixed;
+    width: 100vw;    
+    z-index: 20;
+}
+
+.header-container {
+    position: fixed;
+    margin-top: 4rem;
+    background-color: white;
+    height: 4rem;
+    width: 70vw;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ion-color-primary);
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 30;
+}
+
+form {
+    margin-top: 5rem;
+}
+
+.button-container {
+    margin-top: 1rem;   
+    margin-bottom: 3rem; 
+}
+
+ion-input {
+    ::ng-deep{
+        .input-wrapper {
+            border-bottom: 1px solid;
+        }
+
+        .label-text {
+            font-size: 20px;
+        }
+
+        .native-input {
+            font-size: 20px !important;
+            padding-top: 0.5rem !important;
+
+        }
+
+    } 
+}
+
+ion-button {
+    font-weight: 900 !important;
+    font-size: medium;
+}
+
+.date-picker-row {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    border-bottom: 1px solid;
+
+  }
+  
+  .date-picker-row ion-label {
+    flex: 1; 
+    font-size: 15px;
+    margin-bottom: 1rem;
+  }
+  
+  .date-picker-row ion-datetime-button {
+    margin-left: auto; 
+    margin-bottom: 1rem;
+  }
+
+  

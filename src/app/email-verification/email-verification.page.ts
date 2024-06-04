@@ -18,7 +18,11 @@ export class EmailVerificationPage implements OnInit {
     autoFocus: true,
     numericInputMode: true,
     classList: {
-      input: 'otp-digit-input'
+      input: 'otp-digit-input',
+      inputFilled: '',
+      inputDisabled: '',
+      inputSuccess: '',
+      inputError: '',
     }
   }
   constructor(private router: Router) { }

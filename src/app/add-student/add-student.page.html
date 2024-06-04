@@ -1,0 +1,75 @@
+<div class="top-rectangle"></div>
+<ion-grid class="main-container ion-justify-content-center ion-align-items-center">
+
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <div class="header-container">
+      <span>Add Student</span>
+    </div>
+  </ion-row>
+
+  <form [formGroup]="addStudentForm">
+    <ion-row>
+      <ion-input formControlName="firstName" label="First Name" labelPlacement="stacked"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input formControlName="lastName" label="Last Name" labelPlacement="stacked"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input formControlName="cnp" label="CNP" labelPlacement="stacked"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input formControlName="phoneNumber" label="Phone Number" labelPlacement="stacked" type="tel" ></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input formControlName="email" label="E-mail" labelPlacement="stacked" type="email" ></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input formControlName="matricolNumber" label="Matricol number" labelPlacement="stacked" ></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-select formControlName="specialization" label="Specialization/Program" placeholder="Choose">
+        <ion-select-option value="AIA">A.I.A.</ion-select-option>
+        <ion-select-option value="ACH">A.C.H.</ion-select-option>
+      </ion-select>
+    </ion-row>
+
+    <ion-row>
+      <ion-select formControlName="year" label="Year" placeholder="Choose">
+        <ion-select-option value="1">I</ion-select-option>
+        <ion-select-option value="2">II</ion-select-option>
+        <ion-select-option value="3">III</ion-select-option>
+        <ion-select-option value="4">IV</ion-select-option>
+
+
+      </ion-select>
+    </ion-row>
+
+    <ion-row>
+      <ion-select formControlName="group" label="Group" placeholder="Choose">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+      </ion-select>
+    </ion-row>
+
+    <ion-row>
+      <ion-select formControlName="subgroup" label="Subgroup" placeholder="Choose">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+      </ion-select>
+    </ion-row>
+    
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-button (click)="createStudent()" expand="full" shape="round" color="secondary">Ask for Update</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+</ion-grid>

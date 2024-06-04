@@ -32,8 +32,8 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-
-<div class="backdrop" *ngIf="showModal">
+<div class="backdrop" *ngIf="showModal" (click)="showModal = false"></div>
+<div *ngIf="showModal">
   <form [formGroup]="classForm">
     <ion-row>
       <ion-input

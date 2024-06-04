@@ -1,0 +1,45 @@
+<div class="top-rectangle"></div>
+<ion-grid class="main-container ion-justify-content-center ion-align-items-center">
+
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <div class="header-container">
+      <span>Add Teacher</span>
+    </div>
+  </ion-row>
+
+  <form [formGroup]="addTeacherForm">
+    <ion-row>
+      <ion-input label="CNP" labelPlacement="stacked" type="text" formControlName="cnp"></ion-input>
+    </ion-row>
+    <ion-row>
+      <ion-input label="First Name" labelPlacement="stacked" formControlName="firstName"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input label="Last Name" labelPlacement="stacked" formControlName="lastName"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input label="Phone Number" labelPlacement="stacked" type="tel" formControlName="phoneNumber"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-input label="E-mail" labelPlacement="stacked" type="email" formControlName="email"></ion-input>
+    </ion-row>
+
+    <ion-row>
+      <ion-select label="Department" placeholder="Choose" formControlName="department">
+        <ion-select-option value="1">Matematics</ion-select-option>
+        <ion-select-option value="2">Construction</ion-select-option>
+      </ion-select>
+    </ion-row>
+    
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-button expand="full" shape="round" color="secondary" (click)="addTeacher()">Done</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+</ion-grid>

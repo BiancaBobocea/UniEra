@@ -48,14 +48,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    ion-icon {
+        font-size: 2rem;
+        color: var(--ion-color-secondary,);
+    }
 }
 
 ion-input {
     font-family: Poppins;
+    color: var(--ion-color-light);
     ::ng-deep {
         .label-text {
             margin-top: -10px;
-            color: #fefefe !important;
+            color: var(--ion-color-light) !important;
             font-weight: 200;
         } 
     }

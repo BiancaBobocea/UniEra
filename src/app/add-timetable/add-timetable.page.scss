@@ -1,0 +1,44 @@
+
+
+.header-container {
+  background-color: var(--ion-color-primary);
+  color: white;
+  width: 100vw;
+  padding: 2rem;
+  font-size: 20px;
+  font-family: 'Poppins';
+}
+
+.semester-btn1 {
+    --border-radius: 0px 0px 0px 20px !important;
+    margin: 1px 0px 1px 0px;
+    font-size: 18px;
+}
+
+.semester-btn2 {
+  --border-radius: 0px 0px 20px 0px !important;
+      margin: 1px 0px 0px 1px;
+      font-size: 18px;
+}
+
+.active-btn {
+  --background: #798a89;
+}
+
+
+.list {
+  margin-top: 2rem;
+  width: 80vw;
+  }
+
+.big-list {
+  display: flex;
+}
+
+.button-container {
+  ion-button {
+    font-weight: 700 !important;
+    font-size: medium;
+  }
+  margin-top: 2rem;
+}

@@ -1,0 +1,57 @@
+<div class="welcome-student" *ngIf="{userDetails: userDetails$ | async} as user">
+    <p class="welcome-title">Salutare, {{user?.userDetails?.firstName}}</p>
+    <div class="week-container">
+        <ion-grid class="container">
+            <ion-row class="scheduled-container ion-justify-content-center ion-align-items-center">
+                <span>Orele de astazi</span>
+            </ion-row>
+            <ion-row class="date-container ion-justify-content-center ion-align-items-center">
+                <span>{{currentDate}}</span>
+            </ion-row>
+            <ion-row class="week-days-container ion-justify-content-center ion-align-items-center">
+                <ion-col *ngFor="let day of currentWeek; let i=index" class="week-day" [class.active]="day.active" size="2" (click)="selectDay(i)">
+                    {{day.name}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div>
+        <p class="time-table-header">Orar</p>
+        <ion-row class="class-container" *ngFor="let class of currentWeek[activeDayIndex].schedule" size="12">
+            <ion-col size="2" class="flex ion-justify-content-center ion-align-items-center">{{class.startHour}}</ion-col>
+            <ion-col size="1" class="course-bullet-point flex ion-justify-content-center ion-align-items-center">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                <div class="vl"></div>
+            </ion-col>
+            <ion-col size="9">
+                <div class="course-name flex ion-justify-content-between ion-align-items-center" [ngClass]="{'free-bg': class.classType === 'FREE', 'course-bg': class.classType === 'COURSE', 'lab-bg': class.classType === 'LAB'}">
+                    <span>
+                        {{class.className}}
+                    </span>
+                    <span>
+                        {{class?.room}}
+                    </span>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+
+        <ion-row class="flex ion-align-items-center ion-justify-content-center" style="gap: 1rem; margin-top: 1rem;">
+            <ion-col size="3" class="flex ion-justify-content-center ion-align-items-center legend course-bg">
+                <span>
+                    Curs
+                </span> 
+            </ion-col>
+            <ion-col size="4" class="flex ion-justify-content-center ion-align-items-center legend lab-bg">
+                <span>
+                    Laborator
+                </span> 
+            </ion-col>
+            <ion-col size="3" class="flex ion-justify-content-center ion-align-items-center legend free-bg">
+                <span>
+                    Pauza
+                </span> 
+            </ion-col>
+        </ion-row>
+
+</div>

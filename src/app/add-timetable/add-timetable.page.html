@@ -1,0 +1,92 @@
+<ion-grid class="main-container ion-no-padding ion-justify-content-center ion-align-items-center">
+
+  <ion-row class="header-container ion-justify-content-center ion-align-items-center">
+    <span>Adauga Orar</span>
+  </ion-row>
+
+      <ion-row class="semester-row">
+        <ion-col size="6" class="semester-col">
+          <ion-button (click)="selectSemester1()" expand="block" class="semester-btn1" [ngClass]="{'active-btn': showSemester1}">Semestrul I</ion-button>
+        </ion-col>
+        <ion-col size="6" class="semester-col">
+          <ion-button (click)="selectSemester2()" expand="block" class="semester-btn2" [ngClass]="{'active-btn': showSemester2}">Semestrul II</ion-button>
+        </ion-col>
+      </ion-row>
+ 
+  
+    <div class=" big-list ion-justify-content-center ion-align-items-center" *ngIf="showSemester1">
+      <form [formGroup]="timetableSem1DetailsForm" class="list">  
+        <ion-row>
+          <ion-select label="Specializare" placeholder="Alege" formControlName="specialization">
+            <ion-select-option value="AIA">A.I.A.</ion-select-option>
+            <ion-select-option value="ACH">A.C.H.</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="An" placeholder="Alege" formControlName="year">
+            <ion-select-option value="1">I</ion-select-option>
+            <ion-select-option value="2">II</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="Grupa" placeholder="Alege" formControlName="group">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="Subgrupa" placeholder="Alege" formControlName="subGroup">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+          </ion-select>
+        </ion-row>  
+      </form>
+    </div>
+
+    <div class=" big-list ion-justify-content-center ion-align-items-center" *ngIf="showSemester2">
+      <form [formGroup]="timetableSem2DetailsForm" class="list">    
+        <ion-row>
+          <ion-select label="Specializare" placeholder="Alege" formControlName="specialization">
+            <ion-select-option value="1">A.I.A.</ion-select-option>
+            <ion-select-option value="2">A.C.H.</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="An" placeholder="Alege" formControlName="year">
+            <ion-select-option value="1">I</ion-select-option>
+            <ion-select-option value="2">II</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="Grupa" placeholder="Alege" formControlName="group">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+          </ion-select>
+        </ion-row>
+    
+        <ion-row>
+          <ion-select label="Subgrupa" placeholder="Alege" formControlName="subGroup">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+          </ion-select>
+        </ion-row>
+      </form>
+    </div>
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-button expand="full" shape="round" color="secondary" (click)="goToSelectTimetable()">Adauga</ion-button>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+
+<ion-toast
+[isOpen]="showErrorToast"
+message="Completati mai intai toate campurile corect!"
+[duration]="3000"
+(didDismiss)="closeToast()"
+></ion-toast> 
