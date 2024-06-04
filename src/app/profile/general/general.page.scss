@@ -1,0 +1,33 @@
+.general-container {
+    width: 100%;
+    background: white;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    margin-top: 1rem;
+}
+
+.prop-header,.prop-value {
+    width: 100%;
+}
+
+.prop-value {
+    font-weight: 200;
+    font-size: 14px;
+}
+
+.prop {
+    margin-top: 1rem;
+}
+
+::ng-deep .alert-head {
+    display: none !important;
+}
+
+::ng-deep .alert-input {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border: none !important;
+    background-color: var(--ion-color-light) !important;
+}

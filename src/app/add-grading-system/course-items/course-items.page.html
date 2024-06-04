@@ -1,0 +1,144 @@
+<div
+  *ngIf="{user: user$ | async, grupa: grupaSelectata$ | async, subgrupa: subgrupaSelectata$ | async, userDetails: userDetails$ | async} as data"
+>
+  <h3>Grupa {{ data.grupa }} - Subgrupa {{ data.subgrupa }}</h3>
+
+  <div
+    *ngIf="data.userDetails.role === 'teacher'"
+    id="triggerBtn"
+    (click)="showAddElementsModal = true"
+  >
+    <ion-icon name="add-circle-outline"></ion-icon>
+    <span> Add Elements </span>
+  </div>
+
+  <ion-accordion-group
+    *ngIf="listaElementeCurs$ | async as listaElementeCurs"
+    (ionChange)="accordionGroupChange($event)"
+  >
+    <ion-accordion
+      *ngFor="let element of listaElementeCurs"
+      [value]="element.type"
+    >
+      <ion-item slot="header">
+        <ion-label>{{element.type | titlecase}}</ion-label>
+      </ion-item>
+
+      <!-- course item display for teacher -->
+      <div class="ion-padding option-1 item-details-teacher" slot="content" *ngIf="data.userDetails.role === 'teacher'">
+        <span *ngIf="element.percentage">{{element.percentage}}%</span>
+        <span
+          *ngIf="!element.percentage"
+          (click)="showPercentageModal = true"
+        >
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <span> {{ element.percentage || 'Procentaj'}} </span>
+        </span>
+        <span
+          (click)="goToGradesList()"
+        >
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <span> Note </span>
+        </span>
+      </div>
+
+      <!-- course item display for student -->
+      <ion-row class="ion-padding item-details-student" slot="content" *ngIf="data.userDetails.role === 'student'">
+        <ion-col size="12" class="option-1">
+          <span>Pondere</span>
+          <span *ngIf="element.percentage">{{element.percentage}}%</span>
+        </ion-col>
+
+        <ng-container *ngIf="{grade: getCurrentStudentGrade(data.user?.uid, element.grades)} as grade">
+          <ion-col size="12" class="option-2">
+            <span>Nota</span>
+            <span >{{grade.grade || ''}}</span>
+          </ion-col>
+
+          <ion-col size="12" class="option-3">
+            <span>Procentajul Final</span>
+            <span >{{(element.percentage / 100) * grade.grade || ''}}</span>
+          </ion-col>
+        </ng-container>
+        
+      </ion-row>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-modal
+    #addElementsModal
+    [isOpen]="showAddElementsModal"
+    [initialBreakpoint]="1"
+    [breakpoints]="[0, 1]"
+    *ngIf="materiaSelectata$ | async as materia"
+    (didDismiss)="showAddElementsModal = false"
+  >
+    <ng-template>
+      <div class="modalContent">
+        <ion-row style="margin-bottom: 2rem">
+          <ion-select
+            label="Tip item*"
+            placeholder="Alege"
+            [(ngModel)]="itemSelectat"
+          >
+            <ion-select-option
+              *ngFor="let item of itemOptions"
+              [value]="item.value"
+            >
+              {{item.label}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+
+        <ion-row
+          class="button-container ion-justify-content-center ion-align-items-center"
+        >
+          <ion-col size="10">
+            <ion-button
+              (click)="addItem(addElementsModal, materia, data.grupa, data.subgrupa)"
+              expand="full"
+              shape="round"
+              color="secondary"
+              >Adauga</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    #setPercentageModal
+    [isOpen]="showPercentageModal"
+    [initialBreakpoint]="1"
+    [breakpoints]="[0, 1]"
+    (didDismiss)="showPercentageModal = false"
+    *ngIf="materiaSelectata$ | async as materia"
+  >
+    <ng-template>
+      <div class="modalContent">
+        <ion-row style="margin-bottom: 2rem">
+          <ion-input
+            [(ngModel)]="procentajSelectat"
+            label="Procentaj*"
+            labelPlacement="stacked"
+          ></ion-input>
+        </ion-row>
+
+        <ion-row
+          class="button-container ion-justify-content-center ion-align-items-center"
+        >
+          <ion-col size="10">
+            <ion-button
+              (click)="setPercentage(setPercentageModal, materia, data.grupa, data.subgrupa, procentajSelectat)"
+              expand="full"
+              shape="round"
+              color="secondary"
+              >Seteaza Pondere</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </div>
+    </ng-template>
+  </ion-modal>
+</div>

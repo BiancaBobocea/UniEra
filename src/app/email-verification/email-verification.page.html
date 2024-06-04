@@ -1,0 +1,32 @@
+<img class="header-image" src="assets/images/forgot-password.svg" alt="">
+<p class="email-verification-text">Email Verification</p>
+
+<div class="email-verification">
+  <ion-grid class="container">
+      
+    <ion-row class="code-container ion-justify-content-center ion-align-items-center">
+      <span>Get Your Code</span>
+    </ion-row>
+
+    <ion-row class="enter-container ion-justify-content-center ion-align-items-center">
+      <span>Please, enter the 4 digit code that</span>
+      <span>send to your email address</span> 
+    </ion-row>
+
+    <ion-row class="otp-container ion-justify-content-center ion-align-items-center">
+      <ngx-otp-input [config]="otpInputConfig"></ngx-otp-input>
+    </ion-row>
+
+    <!-- Recover-password button -->
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-button (click)="goToResetPassword()" expand="full" shape="round" color="secondary">Verify and Proceed</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="resend-container ion-justify-content-center ion-align-items-center">
+      <span>If you don’t receive code! <b (click)="resendCode()">RESEND</b></span>
+    </ion-row>
+
+  </ion-grid>
+</div>

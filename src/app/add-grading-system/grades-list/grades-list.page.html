@@ -1,0 +1,27 @@
+<div
+  *ngIf="{listaStudenti: listaStudenti$ | async, grupa: grupaSelectata$ | async, subgrupa: subgrupaSelectata$ | async, materia: materiaSelectata$ | async, elementCurs: elementCursSelectat$ | async } as data"
+>
+  <h3>Grupa {{data.grupa}} - Subgrupa {{data.subgrupa}}</h3>
+  <h3>Note {{data.elementCurs | titlecase}}</h3>
+
+  <ion-list lines="full">
+    <ng-container *ngFor="let student of data.listaStudenti">
+      <ion-item
+        *ngIf="student.year === data.materia.year && student.group === data.grupa && student.subgroup === data.subgrupa"
+      >
+        <ion-label>{{student.firstName}}  {{student.lastName}}</ion-label>
+        <ng-container *ngIf="{grade: getUserGrade(student, data.materia, data.grupa, data.subgrupa, data.elementCurs)} as gradeObj">
+          <span *ngIf="!!gradeObj.grade">{{gradeObj.grade}}</span>
+          <span
+            *ngIf="!gradeObj.grade"
+            class="add-grade-btn"
+            (click)="addGrade(student, data.materia, data.grupa, data.subgrupa, data.elementCurs)"
+          >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Adauga nota</span>
+          </span>
+        </ng-container>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</div>

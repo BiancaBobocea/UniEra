@@ -1,0 +1,47 @@
+.fake-body {
+    background-color: var(--ion-color-primary);
+    height: 100vh;
+    width: 100vw;
+}
+.admin-container {
+    height: 90vh;
+    position: absolute;
+    padding: 0rem 2rem;
+    padding-bottom: 4rem;
+    background-color: var(--ion-color-light);
+    bottom: 0;
+    border-radius: 20px 20px 0px 0px;
+}
+.admin-card {
+    height: calc(100% / 4);
+    width: 100%;
+    background-color: var(--ion-color-light-shade);
+    margin: 0.1rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 1rem;
+    & span {
+        text-align: center;
+        margin-top: .5rem;
+    }
+}
+
+.left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-icon {
+    font-size: 3rem;
+}
+
+h2 {
+    color: white;
+    padding: 1rem;
+}

@@ -1,0 +1,78 @@
+.email-verification {
+    display: flex;
+    background-color: #fefefe;
+    font-family: 'Poppins';
+}
+
+.container {
+    width: 100%;
+    margin-top: 50vh;
+    transform: translate(0%, -50%);
+}
+
+.email-verification-text {
+    text-align: center;
+    color: #fefefe;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 3rem;
+    position: absolute;
+    width: 100%;
+}
+
+.header-image {
+    width: 100vw;
+    object-fit: cover;
+    position: absolute;
+}
+
+.code-container {
+    color: #505151;
+    font-weight: 600;
+    font-size: large;
+}
+    
+
+.enter-container {
+    color: #505151;
+    margin-top: 0rem;
+    font-weight: 200;
+}
+
+.otp-container {
+    margin-top: 1.5rem;
+}
+
+.button-container {
+    margin-top: 2rem;
+}
+
+.resend-container {
+    margin-top: 0.2rem;
+    font-weight: 200;
+    color: 505151;
+    font-size: 14px;
+}
+
+b{
+    color: #505151;
+}
+
+ion-input {
+    font-family: Poppins;
+    ::ng-deep {
+        .label-text {
+            margin-top: -10px;
+            color: #fefefe !important;
+            font-weight: 200;
+        } 
+    }
+}
+
+ion-button {
+    font-weight: 900 !important;
+    font-size: medium;
+}
+
+

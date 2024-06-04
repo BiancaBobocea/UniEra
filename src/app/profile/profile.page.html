@@ -1,0 +1,12 @@
+<div class="fake-body" *ngIf="(userDetails$ | async) as userDetails">
+  <ion-row class="profile-picture">
+    <ion-icon class="placeholder-picture" name="camera"></ion-icon>
+  </ion-row>
+  <ion-row class="profile-name-display">
+    {{ userDetails.firstName }} {{ userDetails.lastName }}
+  </ion-row>
+  <ion-row class="profile-matricol-nr" *ngIf="userDetails?.matricolNumber">
+    #{{ userDetails.matricolNumber }}
+  </ion-row>
+  <router-outlet></router-outlet>
+</div>

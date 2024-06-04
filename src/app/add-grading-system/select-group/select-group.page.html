@@ -1,0 +1,18 @@
+<form *ngIf="materiaSelectata$ | async as materiaSelectata" (ionChange)="accordionGroupChange($event)">
+  <ion-accordion-group>
+    <ion-accordion value="1">
+      <ion-item slot="header">
+        <ion-label>Group 1</ion-label>
+      </ion-item>
+      <div class="ion-padding option-1" slot="content" (click)="selectSubgroup('1')">Subgrupa 1</div>
+      <div class="ion-padding option-2" slot="content" (click)="selectSubgroup('2')">Subgrupa 2</div>
+    </ion-accordion>
+    <ion-accordion value="2">
+      <ion-item slot="header">
+        <ion-label>Group 2</ion-label>
+      </ion-item>
+      <div class="ion-padding option-1" slot="content" (click)="selectSubgroup('1')">Subgrupa 1</div>
+      <div class="ion-padding option-2" slot="content" (click)="selectSubgroup('2')">Subgrupa 2</div>
+    </ion-accordion>
+  </ion-accordion-group>
+</form>

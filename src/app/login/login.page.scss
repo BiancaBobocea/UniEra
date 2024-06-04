@@ -1,0 +1,66 @@
+.login-page {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #3F5856;
+    font-family: 'Poppins';
+}
+
+.container {
+    width: 100%;
+}
+
+.email-container {
+    margin-top: 5rem;
+}
+
+.email-container, .password-container {
+    margin: 0 2rem;
+    border-bottom: 1px solid #fefefe !important;
+    padding: 0 !important;
+}
+
+.password-container {
+    margin-top: 4rem;
+}
+
+.forgot-container {
+    margin-top: 1.5rem;
+    font-weight: 200;
+    color: #fefefe;
+}
+
+.button-container {
+    margin-top: 3rem;
+}
+
+.img-container {
+    margin-bottom: 2rem;
+}
+
+.email-text, .password-text {
+    border-left: 1px solid #fefefe !important;
+    padding-left: 0.5rem;
+}
+
+.email-img, .password-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-input {
+    font-family: Poppins;
+    ::ng-deep {
+        .label-text {
+            margin-top: -10px;
+            color: #fefefe !important;
+            font-weight: 200;
+        } 
+    }
+}
+
+ion-button {
+    font-weight: 900 !important;
+}

@@ -1,0 +1,41 @@
+.main-container {
+    padding: 4rem 1rem;
+    width: 100vw;
+    overflow: scroll;
+}
+
+.top-rectangle {
+    background-color: var(--ion-color-primary);
+    height: 6rem;
+    border-radius: 0px 0px 20px 20px;
+    position: fixed;
+    width: 100vw;    
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    top: 0;
+    left: 0;
+}
+
+.header-container {
+    position: fixed;
+    margin-top: 4rem;
+    background-color: white;
+    height: 4rem;
+    width: 70vw;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ion-color-primary);
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 30;
+}
+
+.other-content {
+    margin-top: 4rem;
+}

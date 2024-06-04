@@ -1,0 +1,106 @@
+.modalContent {
+    padding: 2rem;
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+  width: calc(100% - 32px);
+
+  margin: 16px auto;
+}
+
+ion-accordion.accordion-expanding ion-item[slot='header'],
+ion-accordion.accordion-expanded ion-item[slot='header'] {
+  --background: var(--ion-color-light-shade);
+  --color: #505050;
+  border-radius: 20px 20px 0px 0px;
+}
+
+ion-modal {
+    --height: auto;
+  }
+
+  ion-input {
+    ::ng-deep{
+        .input-wrapper {
+            border-bottom: 1px solid;
+        }
+
+        .label-text {
+            font-size: 20px;
+        }
+
+        .native-input {
+            font-size: 20px !important;
+            padding-top: 0.5rem !important;
+
+        }
+
+    } 
+}
+
+#triggerBtn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+
+    & ion-icon {
+        font-size: 2rem;
+        margin: .5rem;
+    }
+}
+
+.item-details-teacher {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    & span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    & ion-icon {
+        font-size: 1.5rem;
+        margin: .3rem;
+    }
+}
+
+.item-details-student {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: .5rem;
+    & ion-col {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.option-1, .option-2, .option-3 {
+    margin: 0.2rem 0rem;
+    border-radius: 10px;
+    height: 3rem;
+    padding: 1rem;
+  }
+
+    .option-1 {
+        background: #C8A98D;
+    }
+
+    .option-2 {
+        background: #ABB5B4;
+    }
+
+    .option-3 {
+        background: #6D7369;
+        color: white;
+    }

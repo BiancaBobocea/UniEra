@@ -1,0 +1,17 @@
+<ion-grid *ngIf="materiaSelectata$ | async as materiaSelectata" class="main-container ion-justify-content-center ion-align-items-center">
+  <div class="top-rectangle">
+    <span>Anul {{materiaSelectata.year}} - Semestrul {{materiaSelectata.semester}}</span>
+  </div>
+
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <div class="header-container">
+      <span>{{materiaSelectata.className}}</span>
+    </div>
+  </ion-row>
+
+  <ion-row class="other-content">
+    <ion-col size="12">
+        <router-outlet></router-outlet>
+    </ion-col>
+  </ion-row>
+</ion-grid>

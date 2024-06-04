@@ -1,0 +1,44 @@
+
+
+.header-container {
+    font-family: 'Poppins';
+    background-color: var(--ion-color-primary);
+    color: white;
+    width: 100vw;
+    padding: 2rem;
+    font-size: 20px;
+  }
+  
+  .semester-btn1 {
+      --border-radius: 0px 0px 0px 20px !important;
+      margin: 1px 0px 1px 0px;
+      font-size: 18px;
+  }
+  
+  .semester-btn2 {
+    --border-radius: 0px 0px 20px 0px !important;
+        margin: 1px 0px 0px 1px;
+        font-size: 18px;
+  }
+  
+  .active-btn {
+    --background: #798a89;
+  }
+
+  .table-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #505151;
+  }
+
+  .table-content {
+    padding: 2rem;
+  }
+
+  .course-row {
+    color: #505151;
+    border-bottom: 0.5px solid #505151;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+  }

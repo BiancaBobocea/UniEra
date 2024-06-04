@@ -1,0 +1,41 @@
+<div class="login-page">
+  <ion-grid class="container">
+    <ion-row class="img-container ion-justify-content-center">
+        <img src="assets/images/logo.svg" alt="">
+    </ion-row>
+  
+    <!-- E-mail row -->
+    <ion-row class="email-container ion-justify-content-center ion-align-items-center" >
+      <ion-col class="email-img" size="2">
+        <img src="assets/images/email-icon.svg" alt="">
+      </ion-col>
+      <ion-col class="email-text">
+        <ion-input label="E-MAIL" labelPlacement="stacked" ></ion-input>
+      </ion-col>
+    </ion-row>
+  
+    <!-- Password row -->
+    <ion-row class="password-container ion-justify-content-center ion-align-items-center" >
+      <ion-col class="password-img" size="2">
+        <img src="assets/images/password-icon.svg" alt="">
+      </ion-col>
+      <ion-col class="password-text">
+        <ion-input label="PASSWORD" labelPlacement="stacked" type="password" ></ion-input>
+      </ion-col>
+    </ion-row>
+  
+    <!-- Forget password row  -->
+    <ion-row class="forgot-container ion-justify-content-center ion-align-items-center">
+      <span (click)="goToForgotPasswordPage()">Forgot password?</span>
+      <!-- <ion-button fill="clear" size="small">Forgot password?</ion-button> -->
+    </ion-row>
+  
+    <!-- Login button -->
+    <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+      <ion-col size="10">
+        <ion-button expand="full" shape="round" color="secondary">Log in</ion-button>
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid>
+</div>

@@ -1,0 +1,139 @@
+.welcome-student {
+    background-color: #fefefe;
+    font-family: 'Poppins';
+    margin: 0 0.5rem;
+}
+
+.welcome-title {
+    text-align: left;
+    color: #505151;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    width: 100%;
+}
+
+.week-container {
+    background-color: #3F5856;
+    border-radius: 40px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.scheduled-container {
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: large;
+}
+
+.date-container {
+    color: #ffffff;
+    margin-top: 0.5rem;
+    font-weight: 200;
+}
+.week-days-container {
+    margin-top: 1rem;
+}
+
+.week-day {
+    display: flex;
+    justify-content: center;
+    background-color: rgba($color: #fff, $alpha: .5);
+    margin: 0 .2rem;
+    border-radius: 10px;
+
+    &.active {
+        background-color: var(--ion-color-secondary);
+        color: #fff;
+    }
+}
+
+.time-table-header {
+    margin-left: 1rem;
+    font-weight: 600;
+    margin: .5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0rem !important;
+}
+
+.course-name, .legend {
+    background: tan;
+    border-radius: 5px;
+    height: 2rem;
+    padding: .5rem;
+    font-weight: 300;
+}
+
+.course-bullet-point {
+    position: relative;
+    color: tan;
+}
+
+.vl {
+    position: absolute;
+    border-left: 1px solid tan;
+    height: 60%;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 2.6rem;
+}
+
+.class-container:last-child .vl {
+    display: none;
+}
+
+.free-bg {
+    background-color: var(--ion-color-primary);
+    color: #efefef;
+}
+
+.course-bg {
+    background-color: var(--ion-color-secondary);
+}
+
+.lab-bg {
+    background-color: var(--ion-color-primary-shade);
+}
+
+.block {
+    width: 100%;
+    min-height: 300px;
+    padding: 3rem;
+}
+
+.select-week {
+    margin: 0rem 1rem;
+
+    &.active {
+        color: var(--ion-color-secondary);
+    }
+}
+
+.button-container {
+    margin-top: 2rem;
+}
+  
+  ion-modal {
+    --height: auto;
+  }
+
+  ion-input {
+    ::ng-deep{
+        .input-wrapper {
+            border-bottom: 1px solid;
+        }
+
+        .label-text {
+            font-size: 20px;
+        }
+
+        .native-input {
+            font-size: 20px !important;
+            padding-top: 0.5rem !important;
+
+        }
+
+    } 
+}

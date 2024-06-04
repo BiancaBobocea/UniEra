@@ -1,0 +1,27 @@
+<ion-tabs (ionTabsDidChange)="tabClicked($event)">
+  <ion-tab-bar slot="bottom" *ngIf="userDetails$ | async as userDetails">
+    <ion-tab-button tab="welcome-student">
+      <ion-icon name="home"></ion-icon>
+      <span
+        *ngIf="
+          selectedTab === 'welcome-student' || selectedTab === 'welcome-admin'
+        "
+        >Acasa</span
+      >
+    </ion-tab-button>
+    <ion-tab-button tab="add-grading-system" *ngIf="userDetails.role !== 'admin'">
+      <ion-icon name="book"></ion-icon>
+      <span
+        *ngIf="
+          selectedTab === 'add-grading-system' ||
+          selectedTab?.includes('grade-item')
+        "
+        >Cursuri</span
+      >
+    </ion-tab-button>
+    <ion-tab-button tab="profile">
+      <ion-icon name="person"></ion-icon>
+      <span *ngIf="selectedTab === 'profile'">Profil</span>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

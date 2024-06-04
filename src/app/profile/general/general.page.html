@@ -1,0 +1,41 @@
+<ion-grid class="general-container" *ngIf="userDetails$ | async as userDetails">
+  Informatii Generale
+  <ng-container *ngIf="userDetails.role === 'student'">
+  
+    <ion-row class="prop">
+      <span class="prop-header">Specializare</span>
+      <span class="prop-value">{{userDetails?.specialization}}</span>
+    </ion-row>
+  
+    <ion-row class="prop">
+      <span class="prop-header">Anul</span>
+      <span class="prop-value">{{userDetails?.year}}</span>
+    </ion-row>
+  
+    <ion-row class="prop">
+      <span class="prop-header">Grupa</span>
+      <span class="prop-value">{{userDetails?.group}}</span>
+    </ion-row>
+  
+    <ion-row class="prop">
+      <span class="prop-header">Subgrupa</span>
+      <span class="prop-value">{{userDetails?.subgroup}}</span>
+    </ion-row>
+  </ng-container>
+
+  <ion-row class="prop">
+    <span class="prop-header">Numar de telefon</span>
+    <span class="prop-value">{{userDetails?.phoneNumber}}</span>
+  </ion-row>
+
+  <ion-row class="prop">
+    <span class="prop-header">Email</span>
+    <span class="prop-value">{{userDetails?.email}}</span>
+  </ion-row>
+</ion-grid>
+
+<ion-row class="button-container ion-justify-content-center ion-align-items-center">
+  <ion-col size="10">
+    <ion-button (click)="askForUpdate()" expand="full" shape="round" color="secondary">Actualizeaza datele</ion-button>
+  </ion-col>
+</ion-row>

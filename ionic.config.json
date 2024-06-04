@@ -1,0 +1,7 @@
+{
+  "name": "uniera",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

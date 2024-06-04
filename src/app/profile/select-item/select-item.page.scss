@@ -1,0 +1,21 @@
+.buttons-container {
+    position: absolute;
+    width: 100%;
+    bottom: 8rem;
+    background: white;
+    height: calc(100% - 23rem);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 85%;
+    color: #505151;
+    font-weight: 300;
+}

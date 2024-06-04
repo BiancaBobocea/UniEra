@@ -1,0 +1,58 @@
+<ion-grid
+  class="main-container ion-no-padding ion-justify-content-center ion-align-items-center"
+>
+  <ion-row
+    class="header-container ion-justify-content-center ion-align-items-center"
+  >
+    <span>Cursuri</span>
+  </ion-row>
+  <ion-row class="semester-row">
+    <ion-col size="6" class="semester-col">
+      <ion-button
+        (click)="selectSemester1()"
+        expand="block"
+        class="semester-btn1"
+        [ngClass]="{'active-btn': selectedSemester === '1'}"
+        >Semestrul I</ion-button
+      >
+    </ion-col>
+    <ion-col size="6" class="semester-col">
+      <ion-button
+        (click)="selectSemester2()"
+        expand="block"
+        class="semester-btn2"
+        [ngClass]="{'active-btn': selectedSemester === '2'}"
+        >Semestrul II</ion-button
+      >
+    </ion-col>
+  </ion-row>
+  <ion-grid
+    *ngIf="{listaMaterii: listaMaterii$ | async, user: user$ | async, userDetails: userDetails$ | async} as details"
+    class="table-content"
+  >
+    <span class="table-title">Denumire Materie</span>
+    <ng-container *ngIf="details.userDetails.role === 'teacher'; else studentTemplate">
+      <ion-row *ngFor="let materie of details.listaMaterii">
+        <ion-col size="12"
+          *ngIf="materie.professorList.includes(details.user?.uid) && materie.semester === selectedSemester"
+          (click)="selectCourse(materie, details.userDetails)"
+          class="course-row"
+        >
+          {{materie.className}}
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ng-template #studentTemplate>
+      <ion-row *ngFor="let materie of details.listaMaterii">
+        <ion-col size="12"
+          *ngIf="materie.year === details.userDetails.year && materie.semester === selectedSemester"
+          (click)="selectCourse(materie, details.userDetails)"
+          class="course-row"
+        >
+          {{materie.className}}
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-grid>
+</ion-grid>

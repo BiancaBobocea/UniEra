@@ -1,0 +1,197 @@
+<div class="welcome-student">
+  <div class="week-container">
+    <ion-grid class="container">
+      <ion-row
+        class="scheduled-container ion-justify-content-center ion-align-items-center"
+      >
+        <span>Select Schedule for {{semestrulSelectat$ | async }}</span>
+      </ion-row>
+      <ion-row
+        class="date-container ion-justify-content-center ion-align-items-center"
+      >
+        <span
+          class="select-week"
+          [class.active]="saptamanaSelectata === 'saptamanaImpara'"
+          (click)="selectWeek('saptamanaImpara')"
+          >odd week</span
+        >
+        <span
+          class="select-week"
+          [class.active]="saptamanaSelectata === 'saptamanaPara'"
+          (click)="selectWeek('saptamanaPara')"
+          >even week</span
+        >
+      </ion-row>
+      <ion-row
+        class="week-days-container ion-justify-content-center ion-align-items-center"
+      >
+        <ion-col
+          *ngFor="let day of selectedWeek; let dayIndex = index"
+          class="week-day"
+          [class.active]="day.active"
+          size="2"
+          (click)="selectDay(dayIndex)"
+        >
+          {{day.name}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <p class="time-table-header">Time Table</p>
+    <ion-row
+      class="class-container"
+      *ngFor="let class of selectedWeek[activeDayIndex].schedule; let i = index"
+      size="12"
+    >
+      <ion-col
+        size="2"
+        class="flex ion-justify-content-center ion-align-items-center"
+        >{{class.startHour}}</ion-col
+      >
+      <ion-col
+        size="1"
+        class="course-bullet-point flex ion-justify-content-center ion-align-items-center"
+      >
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <div class="vl"></div>
+      </ion-col>
+      <ion-col size="9">
+        <div
+          (click)="initializeForm()"
+          [id]="'class-button-' + i"
+          class="course-name flex ion-justify-content-between ion-align-items-center"
+          [ngClass]="{'free-bg': class.classType === 'FREE', 'course-bg': class.classType === 'COURSE', 'lab-bg': class.classType === 'LAB'}"
+        >
+          <span> {{class?.className}} </span>
+          <span> {{class?.room}} </span>
+        </div>
+      </ion-col>
+
+      <ion-modal
+        #modal
+        [trigger]="'class-button-' + i"
+        [initialBreakpoint]="1"
+        [breakpoints]="[0, 1]"
+      >
+        <ng-template>
+          <form class="block" [formGroup]="currentDayForm">
+            <ion-row>
+              <ion-select
+                label="Class Name*"
+                placeholder="Choose"
+                formControlName="class"
+                *ngIf="filtreAdaugareOrar$ | async as filtreAdaugareOrar"
+              >
+              <ng-container *ngFor="let materie of listaMaterii$ | async">
+                <ion-select-option
+                  *ngIf="materie.year === filtreAdaugareOrar.year"
+                  [value]="materie"
+                  >
+                    {{materie.className}}
+                </ion-select-option
+                >
+              </ng-container>
+              </ion-select>
+            </ion-row>
+
+            <ion-row>
+              <ion-select
+                label="Class Type*"
+                placeholder="Choose"
+                formControlName="classType"
+              >
+                <ion-select-option value="LAB">Lab</ion-select-option>
+                <ion-select-option value="COURSE">Course</ion-select-option>
+              </ion-select>
+            </ion-row>
+
+            <ion-row>
+              <ion-select
+                *ngIf="currentDayForm.get('class')?.value?.id as idMaterieSelectata"
+                label="Professor*"
+                placeholder="Choose"
+                formControlName="professor"
+              >
+                <ion-select-option
+                  *ngFor="let prof of getProfessorsInClass(idMaterieSelectata, listaMaterii$ | async, listaProfesori$ | async)"
+                  [value]="prof?.id"
+                >
+                    {{prof.firstName + ' ' + prof.lastName}}
+                  </ion-select-option
+                >
+              </ion-select>
+            </ion-row>
+
+            <ion-row>
+              <ion-input
+                formControlName="room"
+                label="Room"
+                labelPlacement="stacked"
+              ></ion-input>
+            </ion-row>
+
+            <ion-row
+              class="button-container ion-justify-content-center ion-align-items-center"
+            >
+              <ion-col size="10">
+                <ion-button
+                  (click)="addClass(i, modal)"
+                  expand="full"
+                  shape="round"
+                  color="secondary"
+                  >Add</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </form>
+        </ng-template>
+      </ion-modal>
+    </ion-row>
+  </div>
+
+  <ion-row
+    class="flex ion-align-items-center ion-justify-content-center"
+    style="gap: 1rem; margin-top: 1rem"
+  >
+    <ion-col
+      size="3"
+      class="flex ion-justify-content-center ion-align-items-center legend course-bg"
+    >
+      <span> Course </span>
+    </ion-col>
+    <ion-col
+      size="4"
+      class="flex ion-justify-content-center ion-align-items-center legend lab-bg"
+    >
+      <span> Laboratory </span>
+    </ion-col>
+    <ion-col
+      size="3"
+      class="flex ion-justify-content-center ion-align-items-center legend free-bg"
+    >
+      <span> Free </span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row
+    class="button-container ion-justify-content-center ion-align-items-center"
+  >
+    <ion-col size="10">
+      <ion-button
+        expand="full"
+        shape="round"
+        color="secondary"
+        (click)="addTimetableToDatabase()"
+        >Add Timetable</ion-button
+      >
+    </ion-col>
+  </ion-row>
+
+  <ion-toast
+    [isOpen]="showErrorToast"
+    [message]="toastErrorMessage"
+    [duration]="3000"
+    (didDismiss)="closeToast()"
+  ></ion-toast>
+</div>
