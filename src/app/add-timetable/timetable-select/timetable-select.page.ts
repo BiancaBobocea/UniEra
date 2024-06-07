@@ -254,8 +254,8 @@ export class TimetableSelectPage implements OnInit {
       .addTimetable(timetable, this.saptamanaSelectata)
       .then(() => {
         this.alertCtrl.create({
-          header: 'Success',
-          message: 'Timetable added successfully!',
+          header: 'Gata',
+          message: 'Orar adăgat cu succes!',
           buttons: ['OK'],
         });
       });

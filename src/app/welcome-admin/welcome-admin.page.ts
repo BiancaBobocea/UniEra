@@ -20,26 +20,26 @@ export class WelcomeAdminPage implements OnInit {
   userDetails$ = this.stateManagerService.userDetails$;
   leftSideMenuItems = [
     {
-      label: 'Adauga Student',
+      label: 'Adaugă Student',
       routerLink: '/add-student',
     },
     {
-      label: 'Adauga Profesor',
+      label: 'Adaugă Profesor',
       routerLink: '/add-teacher',
     },
     {
-      label: 'Adauga Cursuri',
+    label: 'Adaugă Cursuri',
       routerLink: '/add-classes',
     },
   ];
   
   rightSideMenuItems = [
     {
-      label: 'Adauga/Modifica Orar',
+      label: 'Adaugă/Modifică Orar',
       routerLink: '/add-timetable',
     },
     {
-      label: 'Modifica Date Utilizatori',
+      label: 'Modifică Date Utilizatori',
       routerLink: '/change-student-data',
     },
   ];

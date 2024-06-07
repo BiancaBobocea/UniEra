@@ -4,7 +4,7 @@
       <ion-row
         class="scheduled-container ion-justify-content-center ion-align-items-center"
       >
-        <span>Select Schedule for {{semestrulSelectat$ | async }}</span>
+        <span>Selecteză program pentru {{semestrulSelectat$ | async }}</span>
       </ion-row>
       <ion-row
         class="date-container ion-justify-content-center ion-align-items-center"
@@ -13,13 +13,13 @@
           class="select-week"
           [class.active]="saptamanaSelectata === 'saptamanaImpara'"
           (click)="selectWeek('saptamanaImpara')"
-          >odd week</span
+          >pară</span
         >
         <span
           class="select-week"
           [class.active]="saptamanaSelectata === 'saptamanaPara'"
           (click)="selectWeek('saptamanaPara')"
-          >even week</span
+          >impară</span
         >
       </ion-row>
       <ion-row
@@ -38,7 +38,7 @@
     </ion-grid>
   </div>
   <div>
-    <p class="time-table-header">Time Table</p>
+    <p class="time-table-header">Orar</p>
     <ion-row
       class="class-container"
       *ngFor="let class of selectedWeek[activeDayIndex].schedule; let i = index"
@@ -78,8 +78,8 @@
           <form class="block" [formGroup]="currentDayForm">
             <ion-row>
               <ion-select
-                label="Class Name*"
-                placeholder="Choose"
+                label="Nume curs*"
+                placeholder="Alege"
                 formControlName="class"
                 *ngIf="filtreAdaugareOrar$ | async as filtreAdaugareOrar"
               >
@@ -97,20 +97,20 @@
 
             <ion-row>
               <ion-select
-                label="Class Type*"
-                placeholder="Choose"
+                label="Tip*"
+                placeholder="Alege"
                 formControlName="classType"
               >
-                <ion-select-option value="LAB">Lab</ion-select-option>
-                <ion-select-option value="COURSE">Course</ion-select-option>
+                <ion-select-option value="Lab">Lab</ion-select-option>
+                <ion-select-option value="Curs">Course</ion-select-option>
               </ion-select>
             </ion-row>
 
             <ion-row>
               <ion-select
                 *ngIf="currentDayForm.get('class')?.value?.id as idMaterieSelectata"
-                label="Professor*"
-                placeholder="Choose"
+                label="Profesor*"
+                placeholder="Alege"
                 formControlName="professor"
               >
                 <ion-select-option
@@ -126,7 +126,7 @@
             <ion-row>
               <ion-input
                 formControlName="room"
-                label="Room"
+                label="Sala"
                 labelPlacement="stacked"
               ></ion-input>
             </ion-row>
@@ -158,19 +158,19 @@
       size="3"
       class="flex ion-justify-content-center ion-align-items-center legend course-bg"
     >
-      <span> Course </span>
+      <span> Curs </span>
     </ion-col>
     <ion-col
       size="4"
       class="flex ion-justify-content-center ion-align-items-center legend lab-bg"
     >
-      <span> Laboratory </span>
+      <span> Laborator </span>
     </ion-col>
     <ion-col
       size="3"
       class="flex ion-justify-content-center ion-align-items-center legend free-bg"
     >
-      <span> Free </span>
+      <span> Pauză </span>
     </ion-col>
   </ion-row>
 
@@ -183,7 +183,7 @@
         shape="round"
         color="secondary"
         (click)="addTimetableToDatabase()"
-        >Add Timetable</ion-button
+        >Adaugă orar</ion-button
       >
     </ion-col>
   </ion-row>

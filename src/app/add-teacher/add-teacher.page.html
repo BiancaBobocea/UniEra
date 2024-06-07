@@ -3,7 +3,7 @@
 
   <ion-row class="ion-justify-content-center ion-align-items-center">
     <div class="header-container">
-      <span>Add Teacher</span>
+      <span>Adaugă Profesor</span>
     </div>
   </ion-row>
 
@@ -12,15 +12,15 @@
       <ion-input label="CNP" labelPlacement="stacked" type="text" formControlName="cnp"></ion-input>
     </ion-row>
     <ion-row>
-      <ion-input label="First Name" labelPlacement="stacked" formControlName="firstName"></ion-input>
+      <ion-input label="Prenume" labelPlacement="stacked" formControlName="firstName"></ion-input>
     </ion-row>
 
     <ion-row>
-      <ion-input label="Last Name" labelPlacement="stacked" formControlName="lastName"></ion-input>
+      <ion-input label="Nume" labelPlacement="stacked" formControlName="lastName"></ion-input>
     </ion-row>
 
     <ion-row>
-      <ion-input label="Phone Number" labelPlacement="stacked" type="tel" formControlName="phoneNumber"></ion-input>
+      <ion-input label="Număr de telefon" labelPlacement="stacked" type="tel" formControlName="phoneNumber"></ion-input>
     </ion-row>
 
     <ion-row>
@@ -28,15 +28,22 @@
     </ion-row>
 
     <ion-row>
-      <ion-select label="Department" placeholder="Choose" formControlName="department">
-        <ion-select-option value="1">Matematics</ion-select-option>
-        <ion-select-option value="2">Construction</ion-select-option>
+      <ion-select label="Departament" placeholder="Alege" formControlName="department">
+        <ion-select-option value="1">Matematică</ion-select-option>
+        <ion-select-option value="2">Ingineria Sistemelor</ion-select-option>
+        <ion-select-option value="3">Construcții civile</ion-select-option>
+        <ion-select-option value="4">Mecanica Structurilor</ion-select-option>
+        <ion-select-option value="5">Inginerie Hidrotehnică</ion-select-option>
+        <ion-select-option value="6">Fizică</ion-select-option>
+        <ion-select-option value="7">Limbi Străine</ion-select-option>
+
+        
       </ion-select>
     </ion-row>
     
     <ion-row class="button-container ion-justify-content-center ion-align-items-center">
       <ion-col size="10">
-        <ion-button expand="full" shape="round" color="secondary" (click)="addTeacher()">Done</ion-button>
+        <ion-button expand="full" shape="round" color="secondary" (click)="addTeacher()">Adaugă</ion-button>
       </ion-col>
     </ion-row>
 

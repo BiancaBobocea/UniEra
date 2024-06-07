@@ -3,17 +3,17 @@
 
   <ion-row class="ion-justify-content-center ion-align-items-center">
     <div class="header-container">
-      <span>Add Student</span>
+      <span>Adaugă Student</span>
     </div>
   </ion-row>
 
   <form [formGroup]="addStudentForm">
     <ion-row>
-      <ion-input formControlName="firstName" label="First Name" labelPlacement="stacked"></ion-input>
+      <ion-input formControlName="firstName" label="Prenume" labelPlacement="stacked"></ion-input>
     </ion-row>
 
     <ion-row>
-      <ion-input formControlName="lastName" label="Last Name" labelPlacement="stacked"></ion-input>
+      <ion-input formControlName="lastName" label="Nume" labelPlacement="stacked"></ion-input>
     </ion-row>
 
     <ion-row>
@@ -21,7 +21,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-input formControlName="phoneNumber" label="Phone Number" labelPlacement="stacked" type="tel" ></ion-input>
+      <ion-input formControlName="phoneNumber" label="Număr de telefon" labelPlacement="stacked" type="tel" ></ion-input>
     </ion-row>
 
     <ion-row>
@@ -29,18 +29,18 @@
     </ion-row>
 
     <ion-row>
-      <ion-input formControlName="matricolNumber" label="Matricol number" labelPlacement="stacked" ></ion-input>
+      <ion-input formControlName="matricolNumber" label="Număr matricol" labelPlacement="stacked" ></ion-input>
     </ion-row>
 
     <ion-row>
-      <ion-select formControlName="specialization" label="Specialization/Program" placeholder="Choose">
+      <ion-select formControlName="specialization" label="Specializarea" placeholder="Alege">
         <ion-select-option value="AIA">A.I.A.</ion-select-option>
         <ion-select-option value="ACH">A.C.H.</ion-select-option>
       </ion-select>
     </ion-row>
 
     <ion-row>
-      <ion-select formControlName="year" label="Year" placeholder="Choose">
+      <ion-select formControlName="year" label="Anul" placeholder="Alege">
         <ion-select-option value="1">I</ion-select-option>
         <ion-select-option value="2">II</ion-select-option>
         <ion-select-option value="3">III</ion-select-option>
@@ -51,14 +51,14 @@
     </ion-row>
 
     <ion-row>
-      <ion-select formControlName="group" label="Group" placeholder="Choose">
+      <ion-select formControlName="group" label="Grupa" placeholder="Alege">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
       </ion-select>
     </ion-row>
 
     <ion-row>
-      <ion-select formControlName="subgroup" label="Subgroup" placeholder="Choose">
+      <ion-select formControlName="subgroup" label="Subgrupa" placeholder="Alege">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
       </ion-select>
@@ -66,7 +66,7 @@
     
     <ion-row class="button-container ion-justify-content-center ion-align-items-center">
       <ion-col size="10">
-        <ion-button (click)="createStudent()" expand="full" shape="round" color="secondary">Ask for Update</ion-button>
+        <ion-button (click)="createStudent()" expand="full" shape="round" color="secondary">Adaugă</ion-button>
       </ion-col>
     </ion-row>
 

@@ -1,8 +1,8 @@
 const firebaseErrorCodes = {
-    'auth/invalid-credential': 'Wrong email or password.',
-    'auth/invalid-email': 'Invalid email address.',
-    'auth/user-not-found': 'User not found.',
-    'auth/wrong-password': 'Incorrect password.',
+    'auth/invalid-credential': 'Email sau parolă greșite.',
+    'auth/invalid-email': 'Email invalid.',
+    'auth/user-not-found': 'Utilizator negăsit.',
+    'auth/wrong-password': 'Parolă incorectă.',
     'auth/user-disabled': 'User account is disabled.',
     'auth/email-already-in-use': 'Email is already in use.',
     'auth/weak-password': 'Password is too weak.',

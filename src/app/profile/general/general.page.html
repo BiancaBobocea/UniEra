@@ -1,5 +1,5 @@
 <ion-grid class="general-container" *ngIf="userDetails$ | async as userDetails">
-  Informatii Generale
+  Informații Generale
   <ng-container *ngIf="userDetails.role === 'student'">
   
     <ion-row class="prop">
@@ -24,7 +24,7 @@
   </ng-container>
 
   <ion-row class="prop">
-    <span class="prop-header">Numar de telefon</span>
+    <span class="prop-header">Număr de telefon</span>
     <span class="prop-value">{{userDetails?.phoneNumber}}</span>
   </ion-row>
 
@@ -36,6 +36,6 @@
 
 <ion-row class="button-container ion-justify-content-center ion-align-items-center">
   <ion-col size="10">
-    <ion-button (click)="askForUpdate()" expand="full" shape="round" color="secondary">Actualizeaza datele</ion-button>
+    <ion-button (click)="askForUpdate()" expand="full" shape="round" color="secondary">Actualizează datele</ion-button>
   </ion-col>
 </ion-row>

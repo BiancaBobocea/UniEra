@@ -32,8 +32,8 @@ export class UserDataService {
     await setDoc(doc(db, 'users', `${user?.uid}`), userDetails).then(
       async () => {
         const alert = await this.alertController.create({
-          header: 'Success',
-          message: 'User created successfully',
+          header: 'Gata',
+          message: 'Utilizator creat cu succes!',
           buttons: ['OK'],
         });
 
@@ -195,8 +195,8 @@ export class UserDataService {
     await addDoc(collection(db, 'materii'), { ...classDetails }).then(
       async () => {
         const alert = await this.alertController.create({
-          header: 'Success',
-          message: 'Class added successfully',
+          header: 'Gata',
+          message: 'Curs adăugat cu succes!',
           buttons: ['OK'],
         });
 
@@ -210,8 +210,8 @@ export class UserDataService {
     // Delete a class from the collection "materii"
     await deleteDoc(doc(db, 'materii', classId)).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Class deleted successfully',
+        header: 'Gata',
+        message: 'Curs șters cu succes!',
         buttons: ['OK'],
       });
       await alert.present();

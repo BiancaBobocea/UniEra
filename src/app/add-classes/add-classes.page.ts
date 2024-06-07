@@ -48,15 +48,15 @@ export class AddClassesPage implements OnInit {
 
   openDeleteModal(classId: string) {
     this.alertController.create({
-      header: 'Delete',
-      message: 'Are you sure you want to delete this class?',
+      header: 'Elimină',
+      message: 'Ești sigur că vrei să ștergi acest curs?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Anuleză',
           role: 'cancel',
         },
         {
-          text: 'Delete',
+          text: 'Șterge',
           handler: async () => {
             await this.userDataService.deleteClass(classId);
           },

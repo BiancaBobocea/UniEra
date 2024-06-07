@@ -65,7 +65,7 @@ export class GradesListPage implements OnInit {
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Anulează',
           role: 'cancel',
         },
         {

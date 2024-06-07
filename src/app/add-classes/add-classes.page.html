@@ -27,7 +27,7 @@
         shape="round"
         color="secondary"
         (click)="openModalToAddClass()"
-        >Add Class</ion-button
+        >Adaugă curs</ion-button
       >
     </ion-col>
   </ion-row>
@@ -38,15 +38,15 @@
     <ion-row>
       <ion-input
         formControlName="className"
-        label="Class Name*"
+        label="Nume curs*"
         labelPlacement="stacked"
       ></ion-input>
     </ion-row>
     <ion-row>
       <ion-select
         *ngIf="listaProfesori$ | async as listaProfesori"
-        label="Professor*"
-        placeholder="Choose"
+        label="Profesor*"
+        placeholder="Alege"
         formControlName="professorList"
         [multiple]="true"
       >
@@ -56,7 +56,7 @@
       </ion-select>
     </ion-row>
     <ion-row>
-      <ion-select label="Year*" placeholder="Choose" formControlName="year">
+      <ion-select label="Anul*" placeholder="Alege" formControlName="year">
         <ion-select-option value="1">Anul 1</ion-select-option>
         <ion-select-option value="2">Anul 2</ion-select-option>
         <ion-select-option value="3">Anul 3</ion-select-option>
@@ -64,19 +64,19 @@
       </ion-select>
     </ion-row>
     <ion-row>
-      <ion-select label="Semester*" placeholder="Choose" formControlName="semester">
+      <ion-select label="Semestrul*" placeholder="Alege" formControlName="semester">
         <ion-select-option value="1">Semestrul 1</ion-select-option>
         <ion-select-option value="2">Semestrul 2</ion-select-option>
       </ion-select>
     </ion-row>
     <ion-row>
-      <ion-select label="Group*" placeholder="Choose" formControlName="group">
+      <ion-select label="Grupa*" placeholder="Alege" formControlName="group">
         <ion-select-option value="1">Grupa 1</ion-select-option>
         <ion-select-option value="2">Grupa 2</ion-select-option>
       </ion-select>
     </ion-row>
     <ion-row>
-      <ion-select label="SubGroup*" placeholder="Choose" formControlName="subGroup">
+      <ion-select label="Subgrupa*" placeholder="Alege" formControlName="subGroup">
         <ion-select-option value="1">Subgrupa 1</ion-select-option>
         <ion-select-option value="2">Subgrupa 2</ion-select-option>
       </ion-select>
@@ -87,7 +87,7 @@
         shape="round"
         color="secondary"
         (click)="addClass()"
-        >Add Class</ion-button
+        >Adaugă curs</ion-button
       >
     </ion-row>
   </form>
