@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonGrid, IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login/login.service';
 import { UserDataService } from '../services/user-data/user-data.service';

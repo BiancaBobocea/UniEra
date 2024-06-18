@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Orar, StateManagerService } from '../services/state-manager.service';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { addIcons } from 'ionicons';
-import { checkmarkCircleOutline } from 'ionicons/icons';
+import { checkmarkCircleOutline, notifications, earth } from 'ionicons/icons';
 import { Course } from '../add-timetable/timetable-select/timetable-select.page';
 import { UserDataService } from '../services/user-data/user-data.service';
+import { NotificationsPage } from '../profile/notifications/notifications.page';
+import { PopoverController } from '@ionic/angular';
+import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-welcome-student',
   templateUrl: './welcome-student.page.html',
   styleUrls: ['./welcome-student.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, NotificationsPage],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WelcomeStudentPage implements OnInit {
 
   userDetails$: Observable<any> = this.stateManagerService.userDetails$;
+  user$: Observable<any> = this.stateManagerService.user$;
   saptamanaImpara$: Observable<Orar | undefined> = this.stateManagerService.saptamanaImpara$;
   saptamanaPara$: Observable<any> = this.stateManagerService.saptamanaPara$;
+
+  userNotifications$: Observable<any> = this.stateManagerService.userNotifications$;
+
 
   datepipe: DatePipe = new DatePipe('en-US');
   currentDate = this.datepipe.transform(Date.now(), 'longDate');
@@ -34,43 +42,43 @@ export class WelcomeStudentPage implements OnInit {
       startHour: '8:00',
       endHour: '10:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '10:00',
       endHour: '12:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '12:00',
       endHour: '14:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '14:00',
       endHour: '16:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '16:00',
       endHour: '18:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '18:00',
       endHour: '20:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '20:00',
       endHour: '22:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
   ];
 
@@ -82,10 +90,18 @@ export class WelcomeStudentPage implements OnInit {
     {name: "Vin", schedule: this.schedule, mappedName: 'Friday', active: false}
   ];
 
-  constructor(private stateManagerService: StateManagerService, private userDataService: UserDataService) { }
+  constructor(private stateManagerService: StateManagerService, private userDataService: UserDataService, private readonly popOverController: PopoverController) { }
 
   async ngOnInit() {
-    addIcons({checkmarkCircleOutline})
+
+    addIcons({checkmarkCircleOutline, notifications, earth});
+
+    this.user$.pipe(take(2)).subscribe((user: any) => {
+      if(user?.uid) {
+        console.log(user?.uid)
+        this.userDataService.getUsersNotifications(user?.uid);
+      }
+    });
 
     this.currentWeek.forEach((day, index) => {
       if (day.mappedName === this.dayOfTheWeek) {

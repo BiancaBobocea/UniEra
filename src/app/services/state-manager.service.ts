@@ -33,6 +33,12 @@ export interface UserState {
     subgrupaSelectata?: string | null;
     listaElementeCurs?: any[];
     elementCursSelectat?: any;
+    adminSelectionSaptamanaImpara?: Orar | undefined;
+    adminSelectionSaptamanaPara?: Orar | undefined;
+    adminNotifications?: any[];
+    userNotifications?: any[];
+    loading?: boolean;
+    materialeCursSelectat?: any[];
 }
 
 const initialState: UserState = {
@@ -51,7 +57,13 @@ const initialState: UserState = {
     grupaSelectata: null,
     subgrupaSelectata: null,
     listaElementeCurs: [],
-    elementCursSelectat: null
+    elementCursSelectat: null,
+    adminSelectionSaptamanaImpara: undefined,
+    adminSelectionSaptamanaPara: undefined,
+    adminNotifications: [],
+    userNotifications: [],
+    loading: false,
+    materialeCursSelectat: []
 };
 
 @Injectable({
@@ -122,6 +134,30 @@ export class StateManagerService {
 
     elementCursSelectat$ = this.state$.pipe(
         map((state: UserState) => state.elementCursSelectat)
+    );
+
+    adminSelectionSaptamanaImpara$ = this.state$.pipe(
+        map((state: UserState) => state.adminSelectionSaptamanaImpara)
+    );
+
+    adminSelectionSaptamanaPara$ = this.state$.pipe(
+        map((state: UserState) => state.adminSelectionSaptamanaPara)
+    );
+
+    adminNotifications$ = this.state$.pipe(
+        map((state: UserState) => state.adminNotifications)
+    );
+
+    userNotifications$ = this.state$.pipe(
+        map((state: UserState) => state.userNotifications)
+    );
+
+    loading$ = this.state$.pipe(
+        map((state: UserState) => state.loading)
+    );
+
+    materialeCursSelectat$ = this.state$.pipe(
+        map((state: UserState) => state.materialeCursSelectat)
     );
 
     public updateState(value: any): void {

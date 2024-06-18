@@ -1,0 +1,104 @@
+<div class="top-rectangle"></div>
+<ion-grid class="main-container ion-justify-content-center ion-align-items-center" *ngIf="{listaProfesori: listaProfesori$ | async, listaStudenti: listaStudenti$ | async} as data">
+
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <div class="header-container">
+      <span>Modificare date utilizatori
+      </span>
+    </div>
+  </ion-row>
+
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event, data)" [(ngModel)]="searchTerm"></ion-searchbar>
+
+  <ion-row>
+    <ion-col size="6" class="category-col">
+      <ion-button (click)="selectCategory('studenti', data)" expand="block" class="category-btn1" [ngClass]="{'active-btn': selectedCategory === 'studenti'}">Studenți</ion-button>
+    </ion-col>
+    <ion-col size="6" class="category-col">
+      <ion-button (click)="selectCategory('profesori', data)" expand="block" class="category-btn2" [ngClass]="{'active-btn': selectedCategory === 'profesori'}">Profesori</ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-list>
+    <ion-item *ngFor="let result of results" (click)="editInfoForSelection(result)">
+      <ion-label>{{ result['firstName'] + ' ' + result['lastName'] }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-grid>
+
+<ion-modal
+#addElementsModal
+[isOpen]="showUpdateDataModal"
+[initialBreakpoint]="1"
+[breakpoints]="[0, 1]"
+*ngIf="selectedUser"
+(didDismiss)="showUpdateDataModal = false"
+>
+<ng-template>
+    <form [formGroup]="updateDataForm" class="modalContent">
+      <ion-row>
+        <ion-input formControlName="firstName" label="First Name" labelPlacement="stacked"></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-input formControlName="lastName" label="Last Name" labelPlacement="stacked"></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-input formControlName="cnp" label="CNP" labelPlacement="stacked"></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-input formControlName="phoneNumber" label="Phone Number" labelPlacement="stacked" type="tel" ></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-input formControlName="email" label="E-mail" labelPlacement="stacked" type="email" ></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-input formControlName="matricolNumber" label="Matricol number" labelPlacement="stacked" ></ion-input>
+      </ion-row>
+  
+      <ion-row>
+        <ion-select formControlName="specialization" label="Specialization/Program" placeholder="Choose">
+          <ion-select-option value="AIA">A.I.A.</ion-select-option>
+          <ion-select-option value="ACH">A.C.H.</ion-select-option>
+        </ion-select>
+      </ion-row>
+  
+      <ion-row>
+        <ion-select formControlName="year" label="Year" placeholder="Choose">
+          <ion-select-option value="1">I</ion-select-option>
+          <ion-select-option value="2">II</ion-select-option>
+          <ion-select-option value="3">III</ion-select-option>
+          <ion-select-option value="4">IV</ion-select-option>
+  
+  
+        </ion-select>
+      </ion-row>
+  
+      <ion-row>
+        <ion-select formControlName="group" label="Group" placeholder="Choose">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+        </ion-select>
+      </ion-row>
+  
+      <ion-row>
+        <ion-select formControlName="subgroup" label="Subgroup" placeholder="Choose">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+        </ion-select>
+      </ion-row>
+      
+      <ion-row class="button-container ion-justify-content-center ion-align-items-center">
+        <ion-col size="10">
+          <ion-button (click)="updateUserData()" expand="full" shape="round" color="secondary">Actualizeaza</ion-button>
+        </ion-col>
+      </ion-row>
+  
+    </form>
+</ng-template>
+</ion-modal>

@@ -38,11 +38,42 @@
     align-items: center;
 }
 
-ion-icon {
+.welcome-title {
+    text-align: left;
+    color: #efefef;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 20px;
+    width: 100%;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card-icon {
     font-size: 3rem;
 }
 
-h2 {
-    color: white;
-    padding: 1rem;
+.header-icons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1.4rem !important;
+    color: var(--ion-color-light);
+}
+
+
+::ng-deep ion-popover {
+    --width: 80%;
+}
+
+ion-badge {
+    z-index: 3000;
+    position: absolute;
+    margin-top: -.3rem;
+    margin-left: .7rem;
 }

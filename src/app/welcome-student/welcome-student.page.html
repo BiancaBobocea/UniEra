@@ -1,5 +1,21 @@
 <div class="welcome-student" *ngIf="{userDetails: userDetails$ | async} as user">
-    <p class="welcome-title">Salutare, {{user?.userDetails?.firstName}}</p>
+    <ion-row *ngIf="userNotifications$ | async as userNotifications">
+        <ion-col size="8" class="welcome-title">Salutare, {{user?.userDetails?.firstName}}</ion-col>
+        <ion-col size="4" class="header-icons">
+            <div id="notifications-trigger-2">
+                <ion-badge color="danger" *ngIf="userNotifications.length > 0">{{userNotifications.length}}</ion-badge>
+                <ion-icon name="notifications"> </ion-icon>
+              </div>
+                <ion-popover trigger="notifications-trigger-2" triggerAction="click">
+                <ng-template>
+                    <ion-content class="ion-padding">
+                        <app-notifications></app-notifications>
+                    </ion-content>
+                </ng-template>
+                </ion-popover>
+            <ion-icon name="earth"></ion-icon>
+        </ion-col>
+    </ion-row>
     <div class="week-container">
         <ion-grid class="container">
             <ion-row class="scheduled-container ion-justify-content-center ion-align-items-center">

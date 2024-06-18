@@ -2,17 +2,34 @@
   <ion-accordion-group>
     <ion-accordion value="1">
       <ion-item slot="header">
-        <ion-label>Group 1</ion-label>
+        <ion-label>Grupa 1</ion-label>
       </ion-item>
       <div class="ion-padding option-1" slot="content" (click)="selectSubgroup('1')">Subgrupa 1</div>
       <div class="ion-padding option-2" slot="content" (click)="selectSubgroup('2')">Subgrupa 2</div>
     </ion-accordion>
     <ion-accordion value="2">
       <ion-item slot="header">
-        <ion-label>Group 2</ion-label>
+        <ion-label>Grupa 2</ion-label>
       </ion-item>
       <div class="ion-padding option-1" slot="content" (click)="selectSubgroup('1')">Subgrupa 1</div>
       <div class="ion-padding option-2" slot="content" (click)="selectSubgroup('2')">Subgrupa 2</div>
     </ion-accordion>
   </ion-accordion-group>
+
+  <ng-container *ngIf="materialeCursSelectat$ | async as materiale">
+    <h3 *ngIf="materiale.length > 0" class="material-title">Materiale curs:</h3>
+    <ion-list class="material-list">
+      <div *ngFor="let file of materiale">
+        <div class="material-content">
+          <a [download]="file.name" [href]="file.url">{{file.name}}</a>
+          <ion-icon (click)="removeFile(materiaSelectata, file)" name="close-outline"></ion-icon>
+        </div>
+      </div>
+    </ion-list>
+  </ng-container>
+
+  <div (click)="pickFiles(materiaSelectata)" class="file-picker">
+    <ion-icon name="cloud-upload-outline"></ion-icon>
+    <span>Adauga materiale curs</span>
+  </div>
 </form>

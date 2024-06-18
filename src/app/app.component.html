@@ -1,4 +1,7 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <div class="loader-container" *ngIf="(loading$ | async) === true">
+    <span class="loader"></span>
+  </div>
+  <!-- <ion-router-outlet></ion-router-outlet> -->
   <app-tabs></app-tabs>
 </ion-app>

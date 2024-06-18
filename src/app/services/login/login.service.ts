@@ -24,7 +24,7 @@ export class LoginService {
     const auth = getAuth();
     signOut(auth).then(() => {
       this.userDataService.clearUserState();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { replaceUrl: true });
       // Sign-out successful.
     }).catch((error) => {
       console.log(error);

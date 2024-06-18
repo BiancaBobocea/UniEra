@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { StateManagerService } from 'src/app/services/state-manager.service';
 import { AlertController } from '@ionic/angular';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-general',
@@ -13,25 +15,41 @@ import { AlertController } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class GeneralPage implements OnInit {
+  user$ = this.stateManagerService.user$;
   userDetails$ = this.stateManagerService.userDetails$;
   constructor(
     private readonly stateManagerService: StateManagerService,
-    private readonly alertController: AlertController
+    private readonly alertController: AlertController,
+    private readonly userDataService: UserDataService
   ) {}
 
   ngOnInit() {}
 
-  askForUpdate() {
+  askForUpdate(user: User | null) {
     this.alertController
       .create({
         inputs: [
+          {
+            name: 'title',
+            type: 'text',
+            placeholder: 'Titlu',
+          },
           {
             name: 'details',
             type: 'textarea',
             placeholder: 'Descrieti aici ce doriti sa schimbati la datele dvs.',
           },
         ],
-        buttons: ['Trimite'],
+        buttons: [
+          {
+            text: 'Trimite',
+            handler: async (data) => {
+              console.log(data);
+
+              this.userDataService.publishNotificationForAdmin(data, user?.uid);
+            },
+          },
+        ],
       })
       .then((alert) => {
         alert.present();

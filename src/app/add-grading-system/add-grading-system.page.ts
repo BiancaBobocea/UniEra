@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { UserDataService } from '../services/user-data/user-data.service';
 import { StateManagerService } from '../services/state-manager.service';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { ViewWillEnter } from '@ionic/angular';
 @Component({
   selector: 'app-add-grading-system',
@@ -14,7 +13,7 @@ import { ViewWillEnter } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule],
 })
-export class AddGradingSystemPage implements ViewWillEnter {
+export class AddGradingSystemPage implements OnInit {
   listaMaterii$ = this.stateManagerService.listaMaterii$;
   user$ = this.stateManagerService.user$;
   userDetails$ = this.stateManagerService.userDetails$;
@@ -25,7 +24,8 @@ export class AddGradingSystemPage implements ViewWillEnter {
     private readonly router: Router,
   ) {}
 
-  async ionViewWillEnter() {
+  async ngOnInit() {
+    console.log('cursuri');
     await this.userDataService.getClassesList();
     this.stateManagerService.updateState({
       materiaSelectata: null,

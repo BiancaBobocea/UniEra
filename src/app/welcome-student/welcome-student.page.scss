@@ -1,7 +1,9 @@
 .welcome-student {
     background-color: #fefefe;
-    font-family: 'Poppins';
-    margin: 0 0.5rem;
+    font-family: Poppins;
+    margin: 0 .5rem;
+    padding-bottom: 8rem;
+    overflow: scroll;
 }
 
 .welcome-title {
@@ -10,9 +12,21 @@
     font-family: 'Poppins';
     font-weight: 600;
     font-size: 20px;
-    margin-top: 3rem;
-    margin-left: 2rem;
     width: 100%;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.header-icons {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1.4rem;
+    color: var(--ion-color-primary);
 }
 
 .week-container {
@@ -95,4 +109,15 @@
 
 .lab-bg {
     background-color: rgba($color: #6D7369, $alpha: 0.6)
+}
+
+ion-popover {
+    --width: 80%;
+}
+
+ion-badge {
+    z-index: 3000;
+    position: absolute;
+    margin-top: -.3rem;
+    margin-left: .7rem;
 }

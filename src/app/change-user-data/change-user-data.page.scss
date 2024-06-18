@@ -1,0 +1,79 @@
+.main-container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    width: 85vw;
+    overflow: scroll;
+}
+
+.top-rectangle {
+    background-color: var(--ion-color-primary);
+    height: 6rem;
+    border-radius: 0px 0px 20px 20px;
+    position: fixed;
+    width: 100vw;    
+    z-index: 20;
+}
+
+.header-container {
+    position: fixed;
+    margin-top: 4rem;
+    background-color: white;
+    height: 4rem;
+    width: 70vw;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ion-color-primary);
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 30;
+}
+
+ion-input {
+    ::ng-deep{
+        .input-wrapper {
+            border-bottom: 1px solid;
+        }
+
+        .label-text {
+            font-size: 20px;
+        }
+
+        .native-input {
+            font-size: 20px !important;
+            padding-top: 0.5rem !important;
+
+        }
+
+    } 
+}
+
+ion-button {
+    font-size: medium;
+}
+
+ion-searchbar {
+    margin-top: 6rem;
+}
+
+.active-btn {
+    --background: #798a89;
+  }
+
+  .modalContent {
+    padding: 2rem;
+}
+
+.category-btn1 {
+    --border-radius: 0px 0px 0px 20px !important;
+    margin: 1px 0px 1px 0px;
+    font-size: 18px;
+}
+
+.category-btn2 {
+  --border-radius: 0px 0px 20px 0px !important;
+      margin: 1px 0px 0px 1px;
+      font-size: 18px;
+}

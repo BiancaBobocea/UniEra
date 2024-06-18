@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StateManagerService } from '../services/state-manager.service';
-
+import { ViewWillEnter } from '@ionic/angular';
 @Component({
   selector: 'app-add-timetable',
   templateUrl: './add-timetable.page.html',
@@ -14,8 +14,18 @@ import { StateManagerService } from '../services/state-manager.service';
 })
 export class AddTimetablePage implements OnInit {
 
-  timetableSem1DetailsForm!: FormGroup;
-  timetableSem2DetailsForm!: FormGroup;
+  timetableSem1DetailsForm = this.fb.group({
+    year: ['', Validators.required],
+    specialization: ['', Validators.required],
+    group: ['', Validators.required],
+    subGroup: ['', Validators.required],
+  });
+  timetableSem2DetailsForm = this.fb.group({
+    year: ['', Validators.required],
+    specialization: ['', Validators.required],
+    group: ['', Validators.required],
+    subGroup: ['', Validators.required],
+  });
   selectedForm!: FormGroup;
   showSemester1: boolean = true;
   showSemester2: boolean = false;
@@ -28,19 +38,8 @@ export class AddTimetablePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.timetableSem1DetailsForm = this.fb.group({
-      year: ['', Validators.required],
-      specialization: ['', Validators.required],
-      group: ['', Validators.required],
-      subGroup: ['', Validators.required],
-    });
-
-    this.timetableSem2DetailsForm = this.fb.group({
-      year: ['', Validators.required],
-      specialization: ['', Validators.required],
-      group: ['', Validators.required],
-      subGroup: ['', Validators.required],
-    });
+    this.stateManagerService.updateState({adminSelectionSaptamanaPara : undefined});
+    this.stateManagerService.updateState({adminSelectionSaptamanaImpara : undefined});
 
     this.selectedForm = this.timetableSem1DetailsForm;
   }

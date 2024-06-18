@@ -4,7 +4,6 @@
       <img src="assets/images/logo.svg" alt="">
     </ion-row>
     
-    <!-- E-mail row -->
     <ion-row class="email-container ion-justify-content-center ion-align-items-center" >
       <ion-col class="email-img" size="2">
         <img src="assets/images/email-icon.svg" alt="">
@@ -14,7 +13,6 @@
       </ion-col>
     </ion-row>
     
-    <!-- Password row -->
     <ion-row class="password-container ion-justify-content-center ion-align-items-center" >
       <ion-col class="password-img" size="2">
         <ion-icon name="{{ showPassword ? 'lock-open-outline' : 'lock-closed-outline' }}" (click)="toggleShowPassword()"></ion-icon>
@@ -24,12 +22,10 @@
       </ion-col>
     </ion-row>
     
-    <!-- Forget password row  -->
     <ion-row class="forgot-container ion-justify-content-center ion-align-items-center">
       <span (click)="goToForgotPasswordPage()">Ai uitat parola?</span>
     </ion-row>
   
-    <!-- Login button -->
     <ion-row class="button-container ion-justify-content-center ion-align-items-center">
       <ion-col size="10">
         <ion-button (click)="login()" expand="full" shape="round" color="secondary">Intră în cont</ion-button>

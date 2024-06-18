@@ -1,8 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -12,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { StateManagerService } from 'src/app/services/state-manager.service';
+import { Orar, StateManagerService } from 'src/app/services/state-manager.service';
 import { addIcons } from 'ionicons';
 import { checkmarkCircleOutline } from 'ionicons/icons';
 import { Observable, combineLatest, take } from 'rxjs';
@@ -20,6 +16,7 @@ import { IonModal } from '@ionic/angular/common';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ViewWillEnter } from '@ionic/angular';
 
 export interface Course {
   startHour: string;
@@ -37,7 +34,7 @@ export interface Course {
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
 })
-export class TimetableSelectPage implements OnInit {
+export class TimetableSelectPage implements OnInit, ViewWillEnter {
   currentDayForm!: FormGroup;
   saptamanaSelectata: 'saptamanaPara' | 'saptamanaImpara' = 'saptamanaImpara';
   listaProfesori$: Observable<any> = this.stateManagerService.listaProfesori$;
@@ -46,80 +43,84 @@ export class TimetableSelectPage implements OnInit {
     this.stateManagerService.semestrulSelectat$;
   filtreAdaugareOrar$: Observable<any> =
     this.stateManagerService.filtreAdaugareOrar$;
+  adminSelectionSaptamanaImpara$: Observable<Orar | undefined> =
+    this.stateManagerService.adminSelectionSaptamanaImpara$;
+  adminSelectionSaptamanaPara$: Observable<Orar | undefined> =
+    this.stateManagerService.adminSelectionSaptamanaPara$;
   activeDayIndex = 0;
   schedule: Course[] = [
     {
       startHour: '8:00',
       endHour: '10:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '10:00',
       endHour: '12:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '12:00',
       endHour: '14:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '14:00',
       endHour: '16:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '16:00',
       endHour: '18:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '18:00',
       endHour: '20:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
     {
       startHour: '20:00',
       endHour: '22:00',
       classType: 'FREE',
-      className: 'Free',
+      className: 'Pauza',
     },
   ];
 
   saptamanaImpara = [
     {
       name: 'Lun',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Monday',
       active: false,
     },
     {
       name: 'Mar',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Tuesday',
       active: false,
     },
     {
       name: 'Mie',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Wednesday',
       active: false,
     },
     {
       name: 'Joi',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Thursday',
       active: false,
     },
     {
       name: 'Vin',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Friday',
       active: false,
     },
@@ -128,40 +129,45 @@ export class TimetableSelectPage implements OnInit {
   saptamanaPara = [
     {
       name: 'Lun',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Monday',
       active: false,
     },
     {
       name: 'Mar',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Tuesday',
       active: false,
     },
     {
       name: 'Mie',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Wednesday',
       active: false,
     },
     {
       name: 'Joi',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Thursday',
       active: false,
     },
     {
       name: 'Vin',
-      schedule: this.schedule,
+      schedule: [...this.schedule],
       mappedName: 'Friday',
       active: false,
     },
   ];
 
-  selectedWeek = this.saptamanaImpara;
+  selectedWeek = [...this.saptamanaImpara];
 
   toastErrorMessage = 'Please fill in all the fields first!';
   showErrorToast = false;
+
+  semesterIdTranslate: any = {
+    'semestrul1': 'Semestrul 1',
+    'semestrul2': 'Semestrul 2',
+  }
 
   constructor(
     private stateManagerService: StateManagerService,
@@ -172,8 +178,42 @@ export class TimetableSelectPage implements OnInit {
     private alertCtrl: AlertController
   ) {}
 
+  async ionViewWillEnter() {
+    combineLatest([this.filtreAdaugareOrar$, this.semestrulSelectat$])
+    .pipe(take(1))
+    .subscribe(([filtreAdaugareOrar, semestrulSelectat]) => {
+      if (filtreAdaugareOrar && semestrulSelectat) {
+        this.userDataService.getTimeTableForAdminSelection({
+          ...filtreAdaugareOrar,
+          semestrulSelectat,
+        });
+      }
+    });
+
+    this.adminSelectionSaptamanaImpara$.pipe(take(4)).subscribe((saptamanaImpara) => {
+      if (saptamanaImpara){
+        Object.entries(saptamanaImpara).forEach(([day, orar]) => {
+          let index: number = this.saptamanaImpara.findIndex(item => item.mappedName.toLowerCase() === day);
+          this.saptamanaImpara[index].schedule = orar.schedule?.map((s) => ({...s}));
+        });
+      }
+    });
+
+    this.adminSelectionSaptamanaPara$.pipe(take(4)).subscribe((saptamanaPara) => {
+      if (saptamanaPara){
+        Object.entries(saptamanaPara).forEach(([day, orar]) => {
+          let index: number = this.saptamanaPara.findIndex(item => item.mappedName.toLowerCase() === day);
+          this.saptamanaPara[index].schedule = orar.schedule?.map((s) => ({...s}));
+        });
+      }
+    });
+
+    await this.userDataService.getProfessorList();
+    await this.userDataService.getClassesList();
+  }
+
   async ngOnInit() {
-    this.filtreAdaugareOrar$.subscribe((filtre) => {
+    this.filtreAdaugareOrar$.pipe(take(1)).subscribe((filtre) => {
       if (
         !filtre.year ||
         !filtre.specialization ||
@@ -182,15 +222,6 @@ export class TimetableSelectPage implements OnInit {
       ) {
         this.router.navigate(['add-timetable']);
       }
-    });
-    await this.userDataService.getProfessorList();
-    await this.userDataService.getClassesList();
-    this.saptamanaImpara.forEach((day) => {
-      day.schedule = this.schedule.map((s) => ({ ...s }));
-    });
-
-    this.saptamanaPara.forEach((day) => {
-      day.schedule = this.schedule.map((s) => ({ ...s }));
     });
 
     addIcons({ checkmarkCircleOutline });
@@ -209,7 +240,7 @@ export class TimetableSelectPage implements OnInit {
   selectWeek(week: 'saptamanaPara' | 'saptamanaImpara') {
     this.saptamanaSelectata = week;
     this.selectedWeek =
-      week === 'saptamanaPara' ? this.saptamanaPara : this.saptamanaImpara;
+      week === 'saptamanaPara' ? [...this.saptamanaPara] : [...this.saptamanaImpara];
     this.selectDay(0);
   }
 
@@ -222,9 +253,17 @@ export class TimetableSelectPage implements OnInit {
     });
   }
 
-  getProfessorsInClass(idMaterieSelectata: number, listaMaterii: any[], listaProfesori: any[]): any[] {
-    const materieSelectata = listaMaterii.find((materie) => materie.id === idMaterieSelectata);
-    const profesoriMaterie = listaProfesori.filter((profesor) => materieSelectata.professorList.includes(profesor.id));
+  getProfessorsInClass(
+    idMaterieSelectata: number,
+    listaMaterii: any[],
+    listaProfesori: any[]
+  ): any[] {
+    const materieSelectata = listaMaterii.find(
+      (materie) => materie.id === idMaterieSelectata
+    );
+    const profesoriMaterie = listaProfesori.filter((profesor) =>
+      materieSelectata.professorList.includes(profesor.id)
+    );
     return profesoriMaterie;
   }
 
@@ -239,9 +278,10 @@ export class TimetableSelectPage implements OnInit {
       this.currentDayForm.get('room')?.value;
     this.selectedWeek[this.activeDayIndex].schedule[selectedIndex].classType =
       this.currentDayForm.get('classType')?.value;
-    this.selectedWeek[this.activeDayIndex].schedule[selectedIndex].classId = 
+    this.selectedWeek[this.activeDayIndex].schedule[selectedIndex].classId =
       this.currentDayForm.get('class')?.value.id;
     this.currentDayForm.reset();
+    console.log(this.selectedWeek);
     modal.dismiss();
   }
 

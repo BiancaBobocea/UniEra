@@ -49,6 +49,10 @@ export const routes: Routes = [
     loadComponent: () => import('./add-timetable/timetable-select/timetable-select.page').then( m => m.TimetableSelectPage)
   },
   {
+    path: 'change-user-data',
+    loadComponent: () => import('./change-user-data/change-user-data.page').then( m => m.ChangeUserDataPage)
+  },
+  {
     path: 'welcome-admin',
     loadComponent: () => import('./welcome-admin/welcome-admin.page').then( m => m.WelcomeAdminPage)
   },

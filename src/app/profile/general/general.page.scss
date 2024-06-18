@@ -1,11 +1,13 @@
 .general-container {
     width: 100%;
-    background: white;
+    background: #fff;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
     padding: 1.5rem 2rem;
-    margin-top: 1rem;
+    margin-top: 15rem;
+    margin-bottom: 8rem;
+    overflow: scroll;
 }
 
 .prop-header,.prop-value {

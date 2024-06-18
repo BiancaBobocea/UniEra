@@ -25,10 +25,47 @@ ion-accordion {
     border-radius: 10px;
   }
 
-    .option-1 {
-        background: #C8A98D;
-    }
+.option-1 {
+    background: #C8A98D;
+}
 
-    .option-2 {
-        background: #ABB5B4;
-    }
+.option-2 {
+    background: #ABB5B4;
+}
+
+.file-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #505050;
+  gap: .5rem;
+}
+
+.materiale {
+  background-color: var(--ion-color-light);
+}
+
+.material-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #505151;
+  margin-left: 1rem;
+  margin-top: 3rem;
+}
+
+.material-list {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: 1rem;
+}
+
+.material-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  ion-icon {
+    font-size: 1.4rem;
+  }
+}

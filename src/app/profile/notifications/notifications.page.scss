@@ -1,0 +1,9 @@
+.notification-container {
+    padding: 2rem;
+}
+
+ion-item {
+    &.disabled{
+        opacity: .5;
+    }
+}

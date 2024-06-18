@@ -1,17 +1,45 @@
 <div class="fake-body" *ngIf="userDetails$ | async as userDetails">
-  <h2>Salutare, {{userDetails.firstName}}</h2>
+  <ion-row
+    *ngIf="adminUnresolvedNotifications$ | async as adminUnresolvedNotifications"
+  >
+    <ion-col size="6" class="welcome-title"
+      >Salutare, {{userDetails?.firstName}}</ion-col
+    >
+    <ion-col size="6" class="header-icons">
+      <div id="notifications-trigger-1">
+        <ion-badge color="danger" *ngIf="adminUnresolvedNotifications.length > 0">{{adminUnresolvedNotifications.length}}</ion-badge>
+        <ion-icon name="notifications"> </ion-icon>
+      </div>
+      <ion-popover trigger="notifications-trigger-1" triggerAction="click">
+        <ng-template>
+          <ion-content class="ion-padding">
+            <app-notifications [showOnlyNotResolved]="true"></app-notifications>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+      <ion-icon name="earth"></ion-icon>
+    </ion-col>
+  </ion-row>
 </div>
 <ion-row class="admin-container">
-  <ion-col class="left-side" size='6'>
-    <a class="admin-card" *ngFor="let item of leftSideMenuItems" [routerLink]="item.routerLink">
-      <ion-icon name="add-circle-outline"></ion-icon>
+  <ion-col class="left-side" size="6">
+    <a
+      class="admin-card"
+      *ngFor="let item of leftSideMenuItems"
+      [routerLink]="item.routerLink"
+    >
+      <ion-icon class="card-icon" name="add-circle-outline"></ion-icon>
       <span>{{item.label}}</span>
     </a>
   </ion-col>
 
   <ion-col class="right-side" size="6">
-    <a class="admin-card" *ngFor="let item of rightSideMenuItems" [routerLink]="item.routerLink">
-      <ion-icon name="add-circle-outline"></ion-icon>
+    <a
+      class="admin-card"
+      *ngFor="let item of rightSideMenuItems"
+      [routerLink]="item.routerLink"
+    >
+      <ion-icon class="card-icon" name="add-circle-outline"></ion-icon>
       <span>{{item.label}}</span>
     </a>
   </ion-col>

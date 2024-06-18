@@ -7,13 +7,14 @@ import { StateManagerService } from '../services/state-manager.service';
 import { addIcons } from 'ionicons';
 import { camera, arrowForward } from 'ionicons/icons';
 import { RouterModule } from '@angular/router';
+import { IonRouterOutlet } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, IonRouterOutlet
   ],
 })
 export class ProfilePage implements OnInit {
