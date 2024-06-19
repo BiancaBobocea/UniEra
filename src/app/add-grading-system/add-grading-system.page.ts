@@ -25,7 +25,6 @@ export class AddGradingSystemPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    console.log('cursuri');
     await this.userDataService.getClassesList();
     this.stateManagerService.updateState({
       materiaSelectata: null,
@@ -44,6 +43,7 @@ export class AddGradingSystemPage implements OnInit {
     this.stateManagerService.updateState({
       materiaSelectata: course,
     });
+    this.userDataService.getCourseFiles(course);
 
     if (userDetails.role === 'student') {
       this.stateManagerService.updateState({ grupaSelectata: userDetails.group });

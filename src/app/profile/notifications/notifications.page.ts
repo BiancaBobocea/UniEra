@@ -19,7 +19,7 @@ import { ViewWillEnter } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class NotificationsPage implements OnInit {
-  @Input() showOnlyNotResolved: boolean = false;
+  @Input() showOnlyNotResolved = false;
 
   adminResolvedNotifications$ =
     this.stateManagerService.adminNotifications$.pipe(

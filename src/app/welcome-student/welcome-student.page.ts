@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ViewWillEnter } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Orar, StateManagerService } from '../services/state-manager.service';
-import { Observable, map, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { addIcons } from 'ionicons';
 import { checkmarkCircleOutline, notifications, earth } from 'ionicons/icons';
 import { Course } from '../add-timetable/timetable-select/timetable-select.page';
 import { UserDataService } from '../services/user-data/user-data.service';
 import { NotificationsPage } from '../profile/notifications/notifications.page';
-import { PopoverController } from '@ionic/angular';
-import { ViewWillEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-welcome-student',
@@ -19,9 +17,9 @@ import { ViewWillEnter } from '@ionic/angular';
   styleUrls: ['./welcome-student.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, NotificationsPage],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WelcomeStudentPage implements OnInit {
+export class WelcomeStudentPage implements OnInit, ViewWillEnter {
 
   userDetails$: Observable<any> = this.stateManagerService.userDetails$;
   user$: Observable<any> = this.stateManagerService.user$;
@@ -90,7 +88,7 @@ export class WelcomeStudentPage implements OnInit {
     {name: "Vin", schedule: this.schedule, mappedName: 'Friday', active: false}
   ];
 
-  constructor(private stateManagerService: StateManagerService, private userDataService: UserDataService, private readonly popOverController: PopoverController) { }
+  constructor(private stateManagerService: StateManagerService, private userDataService: UserDataService, private cdr: ChangeDetectorRef) { }
 
   async ngOnInit() {
 
@@ -102,16 +100,48 @@ export class WelcomeStudentPage implements OnInit {
         this.userDataService.getUsersNotifications(user?.uid);
       }
     });
+    
+    this.stateManagerService.userDetails$.pipe(take(1)).subscribe((userDetails) => {
+      if (userDetails) {
+        this.userDataService.getTimeTable(userDetails);
+      }
+    });
+    
+    this.saptamanaImpara$.subscribe((saptamanaImpara) => {
+      if (saptamanaImpara){
+        Object.entries(saptamanaImpara).forEach(([day, orar]) => {
+          let index: number = this.currentWeek.findIndex(item => item.mappedName.toLowerCase() === day);
+          this.currentWeek[index].schedule = orar.schedule?.map((s) => ({...s}));
+        });
+        this.cdr.detectChanges();
+      } else {
+        this.currentWeek = [
+          {name: "Lun", schedule: this.schedule, mappedName: 'Monday', active: false}, 
+          {name: "Mar", schedule: this.schedule, mappedName: 'Tuesday', active: false}, 
+          {name: "Mie", schedule: this.schedule, mappedName: 'Wednesday', active: false}, 
+          {name: "Joi", schedule: this.schedule, mappedName: 'Thursday', active: false}, 
+          {name: "Vin", schedule: this.schedule, mappedName: 'Friday', active: false}
+        ];
 
+        this.currentWeek.forEach((day, index) => {
+          if (day.mappedName === this.dayOfTheWeek) {
+            this.selectDay(index);
+          }
+        });
+      }
+    });
+    
     this.currentWeek.forEach((day, index) => {
       if (day.mappedName === this.dayOfTheWeek) {
         this.selectDay(index);
       }
     });
+  }
 
-    this.stateManagerService.userDetails$.pipe(take(1)).subscribe((userDetails) => {
-      if (userDetails) {
-        this.userDataService.getTimeTable(userDetails);
+  ionViewWillEnter() {
+    this.currentWeek.forEach((day, index) => {
+      if (day.mappedName === this.dayOfTheWeek) {
+        this.selectDay(index);
       }
     });
 

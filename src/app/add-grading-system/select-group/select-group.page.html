@@ -16,20 +16,22 @@
     </ion-accordion>
   </ion-accordion-group>
 
-  <ng-container *ngIf="materialeCursSelectat$ | async as materiale">
-    <h3 *ngIf="materiale.length > 0" class="material-title">Materiale curs:</h3>
-    <ion-list class="material-list">
-      <div *ngFor="let file of materiale">
-        <div class="material-content">
-          <a [download]="file.name" [href]="file.url">{{file.name}}</a>
-          <ion-icon (click)="removeFile(materiaSelectata, file)" name="close-outline"></ion-icon>
+  <ng-container *ngIf="(userDetails$ | async)?.role === 'teacher'">
+    <ng-container *ngIf="materialeCursSelectat$ | async as materiale">
+      <h3 *ngIf="materiale.length > 0" class="material-title">Materiale curs:</h3>
+      <ion-list class="material-list">
+        <div *ngFor="let file of materiale">
+          <div class="material-content">
+            <a [download]="file.name" [href]="file.url">{{file.name}}</a>
+            <ion-icon (click)="removeFile(materiaSelectata, file)" name="close-outline"></ion-icon>
+          </div>
         </div>
-      </div>
-    </ion-list>
+      </ion-list>
+    </ng-container>
+  
+    <div (click)="pickFiles(materiaSelectata)" class="file-picker">
+      <ion-icon name="cloud-upload-outline"></ion-icon>
+      <span>Adauga materiale curs</span>
+    </div>
   </ng-container>
-
-  <div (click)="pickFiles(materiaSelectata)" class="file-picker">
-    <ion-icon name="cloud-upload-outline"></ion-icon>
-    <span>Adauga materiale curs</span>
-  </div>
 </form>

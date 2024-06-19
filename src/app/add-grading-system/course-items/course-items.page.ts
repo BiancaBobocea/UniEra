@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ViewWillEnter } from '@ionic/angular';
 import { StateManagerService } from 'src/app/services/state-manager.service';
 import { IonModal } from '@ionic/angular';
 import { UserDataService } from 'src/app/services/user-data/user-data.service';
@@ -17,12 +17,13 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class CourseItemsPage implements OnInit {
+export class CourseItemsPage implements ViewWillEnter {
 
   grupaSelectata$ = this.stateManagerService.grupaSelectata$;
   subgrupaSelectata$ = this.stateManagerService.subgrupaSelectata$;
   materiaSelectata$ = this.stateManagerService.materiaSelectata$;
   listaElementeCurs$ = this.stateManagerService.listaElementeCurs$;
+  materialeCursSelectat$ = this.stateManagerService.materialeCursSelectat$;
   userDetails$ = this.stateManagerService.userDetails$;
   user$ = this.stateManagerService.user$;
 
@@ -63,7 +64,7 @@ export class CourseItemsPage implements OnInit {
     private readonly router: Router
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     addIcons({addCircleOutline});
     combineLatest([this.grupaSelectata$, this.subgrupaSelectata$, this.materiaSelectata$]).pipe(take(1)).subscribe(([grupa, subgrupa, materia]) => {
       this.userDataService.getClassItems(materia.id, grupa as string, subgrupa as string);
@@ -79,7 +80,6 @@ export class CourseItemsPage implements OnInit {
   setPercentage(modal: IonModal, materiaSelectata: any, grupa: any, subgrupa: any, procentaj: any) {
     this.userDataService.updateClass(this.accordionSelectat, materiaSelectata.id, grupa, subgrupa, procentaj);
     modal.dismiss();
-    console.log('openPercentageModal');
   }
 
   accordionGroupChange = (ev: any) => {

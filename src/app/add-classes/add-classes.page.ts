@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { StateManagerService } from '../services/state-manager.service';
@@ -8,6 +8,7 @@ import { UserDataService } from '../services/user-data/user-data.service';
 import { addIcons } from 'ionicons';
 import { closeOutline } from 'ionicons/icons';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-add-classes',
@@ -22,18 +23,17 @@ export class AddClassesPage implements OnInit {
   listaMaterii$: Observable<any> = this.stateManagerService.listaMaterii$;
   showModal = false;
   classForm = this.fb.group({
-    className: [''],
-    professorList: [''],
-    year: [''],
-    semester: [''],
-    group: [''],
-    subGroup: [''],
+    className: ['', Validators.required],
+    professorList: ['', Validators.required],
+    year: ['', Validators.required],
+    semester: ['', Validators.required],
   });
   constructor(
     private readonly stateManagerService: StateManagerService,
     private userDataService: UserDataService,
     private fb: FormBuilder,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
   ) {}
 
   async ngOnInit() {
@@ -67,9 +67,18 @@ export class AddClassesPage implements OnInit {
     });
   }
 
-  addClass() {
-    const className = this.classForm.get('className')?.value;
-    const professor = this.classForm.get('professorList')?.value;
+  async addClass() {
+    if (this.classForm.invalid) {
+      const toast = await this.toastController.create({
+        message: 'Completeaza toate campurile obligatorii!',
+        position: 'bottom',
+        duration: 3000
+      });
+
+      await toast.present();
+      return;
+    }
+
     this.userDataService.addClass(this.classForm.value);
     this.showModal = false;
   }

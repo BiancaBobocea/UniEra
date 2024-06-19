@@ -281,7 +281,6 @@ export class TimetableSelectPage implements OnInit, ViewWillEnter {
     this.selectedWeek[this.activeDayIndex].schedule[selectedIndex].classId =
       this.currentDayForm.get('class')?.value.id;
     this.currentDayForm.reset();
-    console.log(this.selectedWeek);
     modal.dismiss();
   }
 

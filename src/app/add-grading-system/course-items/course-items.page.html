@@ -65,6 +65,19 @@
     </ion-accordion>
   </ion-accordion-group>
 
+  <ng-container *ngIf="materialeCursSelectat$ | async as materiale">
+    <ng-container *ngIf="data.userDetails.role === 'student'">
+      <h3 *ngIf="materiale.length > 0" class="material-title">Materiale curs:</h3>
+      <ion-list class="material-list">
+        <div *ngFor="let file of materiale">
+          <div class="material-content">
+            <a [download]="file.name" [href]="file.url">{{file.name}}</a>
+          </div>
+        </div>
+      </ion-list>
+    </ng-container>
+  </ng-container>
+
   <ion-modal
     #addElementsModal
     [isOpen]="showAddElementsModal"

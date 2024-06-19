@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminGuard } from './guards/admin.guard';
+import { TeacherGuard } from './guards/teacher.guard';
 
 export const routes: Routes = [
   {
@@ -98,7 +99,8 @@ export const routes: Routes = [
       },
       {
         path: 'select-group',
-        loadComponent: () => import('./add-grading-system/select-group/select-group.page').then( m => m.SelectGroupPage)
+        loadComponent: () => import('./add-grading-system/select-group/select-group.page').then( m => m.SelectGroupPage),
+        canActivate: [TeacherGuard],
       },
       {
         path: 'course-items',

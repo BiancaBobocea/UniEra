@@ -77,3 +77,9 @@ ion-badge {
     margin-top: -.3rem;
     margin-left: .7rem;
 }
+
+::ng-deep .popover-viewport {
+    .notification-container {
+        margin-top: 0px !important;
+    }
+}

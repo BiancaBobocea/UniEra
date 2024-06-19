@@ -60,7 +60,7 @@ export class UserDataService {
       });
       this.router.navigate([
         `welcome-${docSnap.data()['role'] === 'admin' ? 'admin' : 'student'}`,
-      ]);
+      ], { replaceUrl: true });
     } else {
       console.log('No user Details!');
     }
@@ -117,7 +117,6 @@ export class UserDataService {
         );
         let saptamanaPara: any = {};
         querySaptPara.forEach((zi) => {
-          console.log('Zi:', zi.data());
           saptamanaPara[zi.id] = { ...zi.data() };
         });
         console.log('Orar Saptamana Para:', saptamanaPara);
@@ -223,13 +222,7 @@ export class UserDataService {
             )
           );
 
-          console.log(
-            'Query:',
-            `${filtreAdaugareOrar.specialization}/anul${filtreAdaugareOrar.year}/grupa${filtreAdaugareOrar.group}/subgrupa${filtreAdaugareOrar.subGroup}/${semestrulSelectat}/${saptamanaSelectata}`
-          );
-
           query.forEach(async (zi) => {
-            console.log('Zi:', zi.id);
             const noulOrar = timetable[saptamanaSelectata].filter(
               (item: any) => item.mappedName.toLowerCase() === zi.id
             )[0];

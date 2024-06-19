@@ -51,7 +51,7 @@
       class="notification-container"
       *ngIf="userNotifications$ | async as userNotifications"
     >
-      <ion-list>
+      <ion-list *ngIf="userNotifications.length > 0">
         <ion-item
           *ngFor="let notification of userNotifications"
           class="notification-item"
@@ -64,6 +64,7 @@
           <ion-icon (click)="removeNotification(notification, 'user')" name="close-outline"></ion-icon>
         </ion-item>
       </ion-list>
+      <p *ngIf="userNotifications?.length === 0 && userNotifications?.length === 0">Nicio notificare</p>
     </div>
   </ng-container>
 </ng-container>

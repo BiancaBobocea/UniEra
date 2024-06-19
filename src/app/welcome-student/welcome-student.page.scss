@@ -75,7 +75,7 @@
 .course-name, .legend {
     background: tan;
     border-radius: 5px;
-    height: 2rem;
+    min-height: 2rem;
     padding: .5rem;
     font-weight: 300;
 }
@@ -90,8 +90,7 @@
     border-left: 1px solid tan;
     height: 60%;
     left: 50%;
-    transform: translate(-50%);
-    margin-top: 2.6rem;
+    transform: translate(-50%, 80%);
 }
 
 .class-container:last-child .vl {
@@ -120,4 +119,10 @@ ion-badge {
     position: absolute;
     margin-top: -.3rem;
     margin-left: .7rem;
+}
+
+::ng-deep .popover-viewport {
+    .notification-container {
+        margin-top: 0px !important;
+    }
 }

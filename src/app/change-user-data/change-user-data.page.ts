@@ -76,7 +76,6 @@ export class ChangeUserDataPage implements OnInit {
 
   updateUserData() {
     if (this.updateDataForm.invalid) {
-      console.log('Form invalid');
       return;
     }
     this.showUpdateDataModal = false;
