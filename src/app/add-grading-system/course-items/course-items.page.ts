@@ -9,6 +9,7 @@ import { combineLatest, take } from 'rxjs';
 import { addIcons } from 'ionicons';
 import { addCircleOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-course-items',
@@ -61,7 +62,8 @@ export class CourseItemsPage implements ViewWillEnter {
   constructor(
     private readonly stateManagerService: StateManagerService,
     private readonly userDataService: UserDataService,
-    private readonly router: Router
+    private readonly router: Router,
+    private toastController: ToastController
   ) { }
 
   ionViewWillEnter() {
@@ -77,7 +79,16 @@ export class CourseItemsPage implements ViewWillEnter {
     modal.dismiss();
   }
 
-  setPercentage(modal: IonModal, materiaSelectata: any, grupa: any, subgrupa: any, procentaj: any) {
+  async setPercentage(modal: IonModal, materiaSelectata: any, grupa: any, subgrupa: any, procentaj: any) {
+    if (procentaj > 100) {
+      const toast = await this.toastController.create({
+        message: 'Valoarea maxima este 100',
+        position: 'bottom',
+        duration: 3000
+      });
+
+      await toast.present();
+      return;    }
     this.userDataService.updateClass(this.accordionSelectat, materiaSelectata.id, grupa, subgrupa, procentaj);
     modal.dismiss();
   }

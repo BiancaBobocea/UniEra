@@ -1,4 +1,5 @@
 .profile-picture {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +15,28 @@
         font-size: 3rem;
         color: #ABB5B4;
     }
+
+    &.large {
+        height: 150px !important;
+        width: 150px !important;
+    }
+
+    & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    & ion-col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+    }
+    z-index: 10000;
 }
 
 .fake-body {
@@ -36,4 +59,26 @@
     font-weight: 200;
     font-size: 12px;
     margin-top: 0.5rem;
+}
+
+ion-modal {
+    height: 50vh;
+    width: 80vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+
+}
+.backdrop {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: rgba($color: #000000, $alpha: .6);
+    z-index: 10001;
+}
+
+::ng-deep ion-tab-bar {
+    z-index: -1 !important;
 }

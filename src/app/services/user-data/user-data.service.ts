@@ -58,6 +58,7 @@ export class UserDataService {
         userDetails: docSnap.data(),
         user: user,
       });
+      this.getProfilePicture(user.uid);
       this.router.navigate([
         `welcome-${docSnap.data()['role'] === 'admin' ? 'admin' : 'student'}`,
       ], { replaceUrl: true });
@@ -607,6 +608,45 @@ export class UserDataService {
       await alert.present();
       await this.getCourseFiles(materiaSelectata);
       this.stateManagerService.updateState({ loading: false });
+    });
+  }
+
+  async uploadProfilePicture(userId: string, pickedFile: any) {
+    this.stateManagerService.updateState({ loading: true });
+    const storage = getStorage();
+
+    // Create a storage reference from our storage service
+    const storageRef = ref(storage, `profilePictures/${userId}`);
+
+    const metadata = {
+      contentType: 'image/jpeg',
+      contentDisposition: 'attachment'
+    };
+
+    uploadBytes(storageRef, pickedFile).then(() => {
+      this.alertController
+        .create({
+          header: 'Succes!',
+          message: 'Fotografia de profil a fost actualizata!',
+          buttons: ['OK'],
+        })
+        .then(async (alert) => {
+          alert.present();
+          await updateMetadata(storageRef, metadata);
+          await this.getProfilePicture(userId);
+          this.stateManagerService.updateState({ loading: false });
+        });
+    });
+  }
+
+  async getProfilePicture(userId: string) {
+    this.stateManagerService.updateState({ loading: true });
+    // Create a reference to the file we want to download
+    const storage = getStorage();
+    const pictureRef = ref(storage, `profilePictures/${userId}`);
+    const downloadURL = getDownloadURL(pictureRef).then((url) => {
+      console.log('URL:', url);
+      this.stateManagerService.updateState({ pozaProfil: url, loading: false});
     });
   }
 

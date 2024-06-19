@@ -39,6 +39,7 @@ export interface UserState {
     userNotifications?: any[];
     loading?: boolean;
     materialeCursSelectat?: any[];
+    pozaProfil: string | undefined
 }
 
 const initialState: UserState = {
@@ -63,7 +64,8 @@ const initialState: UserState = {
     adminNotifications: [],
     userNotifications: [],
     loading: false,
-    materialeCursSelectat: []
+    materialeCursSelectat: [],
+    pozaProfil: undefined,
 };
 
 @Injectable({
@@ -158,6 +160,10 @@ export class StateManagerService {
 
     materialeCursSelectat$ = this.state$.pipe(
         map((state: UserState) => state.materialeCursSelectat)
+    );
+
+    pozaProfil$ = this.state$.pipe(
+        map((state: UserState) => state.pozaProfil)
     );
 
     public updateState(value: any): void {

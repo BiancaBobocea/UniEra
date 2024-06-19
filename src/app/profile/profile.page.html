@@ -1,12 +1,48 @@
-<div class="fake-body" *ngIf="(userDetails$ | async) as userDetails">
-  <ion-row class="profile-picture">
-    <ion-icon class="placeholder-picture" name="camera"></ion-icon>
-  </ion-row>
-  <ion-row class="profile-name-display">
-    {{ userDetails.firstName }} {{ userDetails.lastName }}
-  </ion-row>
-  <ion-row class="profile-matricol-nr" *ngIf="userDetails?.matricolNumber">
-    #{{ userDetails.matricolNumber }}
-  </ion-row>
-  <ion-router-outlet></ion-router-outlet>
+<div *ngIf="{userDetails: userDetails$ | async, pozaProfil: pozaProfil$ | async } as data">
+  <div class="fake-body">
+    <ion-row class="profile-picture" (click)="openProfilePictureModal()">
+      <img *ngIf="!!data.pozaProfil" [src]="data.pozaProfil">
+      <ion-icon *ngIf="data.pozaProfil === null || data.pozaProfil === undefined" class="placeholder-picture" name="camera"></ion-icon>
+    </ion-row>
+    <ion-row class="profile-name-display">
+      {{ data.userDetails.firstName }} {{ data.userDetails.lastName }}
+    </ion-row>
+    <ion-row class="profile-matricol-nr" *ngIf="data.userDetails?.matricolNumber">
+      #{{ data.userDetails.matricolNumber }}
+    </ion-row>
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+  
+  <ion-modal *ngIf="user$ | async as user" [isOpen]="showPictureModal" (didDismiss)="showPictureModal = false">
+    <ng-template>
+      <ion-row class="profile-picture large">
+        <ion-col>
+          <img *ngIf="!!data.pozaProfil" [src]="data.pozaProfil">
+          <ion-icon *ngIf="data.pozaProfil === null || data.pozaProfil === undefined" class="placeholder-picture" name="camera"></ion-icon>
+            </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+            expand="full"
+            shape="round"
+            color="secondary"
+            (click)="selectProfilePicture(user.uid)"
+            >Schimba poza de profil</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            expand="full"
+            shape="round"
+            color="secondary"
+            fill="clear"
+            (click)="showPictureModal = false"
+            >Inchide</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-modal>
 </div>
+<div *ngIf="showPictureModal" (click)="showPictureModal = false" class="backdrop"></div>
