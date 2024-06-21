@@ -1,0 +1,57 @@
+.payment-form {
+    background-color: var(--ion-color-primary);
+    padding: 1rem;
+    border-radius: 10px;
+
+    & .detalii-card-titlu {
+        color: var(--ion-color-light);
+    }
+}
+
+.figura-card {
+    height: 160px;
+    background-color: var(--ion-color-primary-shade);
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    color: var(--ion-color-light);
+
+    & .nume-card {
+        font-size: 20px;
+    }
+
+    & .numar-card {
+        font-size: 14px;
+    }
+}
+
+.cancel-btn, .pay-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-input {
+    ::ng-deep{
+        .input-wrapper {
+            background-color: white;
+            border-radius: 10px;
+            padding: .5rem !important;
+        }
+
+        .label-text {
+            font-size: 20px;
+        }
+
+        .native-input {
+            font-size: 16px !important;
+        }
+
+    } 
+}
+
+ion-grid {
+    margin: 2rem;
+    margin-top: 12rem;
+}

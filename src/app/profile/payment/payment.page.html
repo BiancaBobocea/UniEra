@@ -1,13 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>payment</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-grid>
+  <ion-row class="figura-card">
+    <span class="nume-card">{{ (paymentForm.get('name')?.value || 'Nume Prenume') }}</span>
+    <span class="numar-card">{{ (paymentForm.get('number')?.value || '1234 1234 1234 1234') | creditCard}}</span>
+  </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">payment</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <form class="payment-form" [formGroup]="paymentForm">
+    <ion-row>
+      <ion-col size="12">
+        <span class="detalii-card-titlu">Detaliile Cardului</span>
+      </ion-col>
+      <ion-col size="12">
+        <ion-input formControlName="amount" placeholder="Suma de plata" type="number"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input formControlName="name" placeholder="Nume Card" maxlength="23"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input name="credit-number" class="cc-number" type="tel" pattern="\d*" maxlength="16" formControlName="number" placeholder="Numar Card"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input [value]="displayedValue" placeholder="MM / YY" type="tel" maxlength="7" (input)="onInput($event)"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input formControlName="cvv" placeholder="CVV" type="tel" maxlength="4"></ion-input>
+      </ion-col>
+
+      <ion-col size="6" class="cancel-btn">
+        <ion-button expand="full" shape="round" color="secondary" fill="clear"
+          >Anuleaza</ion-button
+        >
+      </ion-col>
+
+      <ion-col size="6" class="pay-btn">
+        <ion-button expand="full" shape="round" color="secondary"
+          >Plateste</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-grid>

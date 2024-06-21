@@ -78,7 +78,3 @@ ion-modal {
     background-color: rgba($color: #000000, $alpha: .6);
     z-index: 10001;
 }
-
-::ng-deep ion-tab-bar {
-    z-index: -1 !important;
-}
