@@ -6,6 +6,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { TabsComponent } from './shared/tabs/tabs.component';
 import { StateManagerService } from './services/state-manager.service';
 import { CommonModule } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,8 +19,12 @@ export class AppComponent {
   constructor(
     private readonly userDataService: UserDataService,
     private readonly router: Router,
-    private stateManagerService: StateManagerService
+    private stateManagerService: StateManagerService,
+    private readonly translateService: TranslateService
   ) {
+    this.translateService.setDefaultLang('ro');
+    this.translateService.use('ro');
+
     onAuthStateChanged(getAuth(), (user) => {
       if (user) {
         // User is signed in

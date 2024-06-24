@@ -10,13 +10,14 @@ import { RouterModule } from '@angular/router';
 import { IonRouterOutlet } from '@ionic/angular/standalone';
 import { FilePicker } from '@capawesome/capacitor-file-picker';
 import { UserDataService } from '../services/user-data/user-data.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule, IonRouterOutlet
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, IonRouterOutlet, TranslateModule
   ],
 })
 export class ProfilePage implements OnInit {

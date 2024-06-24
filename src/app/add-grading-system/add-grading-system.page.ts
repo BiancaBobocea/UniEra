@@ -6,12 +6,13 @@ import { UserDataService } from '../services/user-data/user-data.service';
 import { StateManagerService } from '../services/state-manager.service';
 import { Router } from '@angular/router';
 import { ViewWillEnter } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-grading-system',
   templateUrl: './add-grading-system.page.html',
   styleUrls: ['./add-grading-system.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, TranslateModule],
 })
 export class AddGradingSystemPage implements OnInit {
   listaMaterii$ = this.stateManagerService.listaMaterii$;

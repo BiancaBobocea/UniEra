@@ -39,7 +39,7 @@ export interface UserState {
     userNotifications?: any[];
     loading?: boolean;
     materialeCursSelectat?: any[];
-    pozaProfil: string | undefined
+    pozaProfil: string | undefined,
 }
 
 const initialState: UserState = {

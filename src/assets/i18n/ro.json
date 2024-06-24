@@ -1,0 +1,40 @@
+{
+    "welcome-student": {
+        "welcome": "Salutare",
+        "orar-astăzi": "Orarul de astăzi",
+        "orar": "Orar",
+        "curs": "Curs",
+        "laborator": "Laborator",
+        "pauza": "Pauză",
+        "romana": "Română",
+        "engleza": "Engleză"
+    },
+    "profile": {
+        "informatii-generale": "Informatii generale",
+        "notificari": "Notificari",
+        "plati": "Plati",
+        "iesi": "Iesi din cont",
+        "schimba-poza-profil": "Schimba poza de profil",
+        "inchide": "Inchide",
+        "actualizeaza-datele": "Actualizeaza Datele"
+    },
+    "grading-system": {
+        "cursuri": "Cursuri",
+        "semestrul": "Semestrul",
+        "denumire-materie": "Denumire Materie",
+        "grupa": "Grupa",
+        "subgrupa": "Subgrupa",
+        "specializare": "Specializare",
+        "examen": "Examen",
+        "laborator": "Laborator",
+        "curs": "Curs",
+        "proiect": "Proiect",
+        "materiale-curs": "Materiale Curs",
+        "anul": "Anul",
+        "pondere": "Pondere",
+        "nota": "Nota",
+        "procentajul-final": "Procentajul final",
+        "numar-de-telefon": "Numar de telefon",
+        "email": "Email"
+    }
+}

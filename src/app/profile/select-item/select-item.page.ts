@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { LoginService } from 'src/app/services/login/login.service';
 import { RouterModule } from '@angular/router';
 import { StateManagerService } from 'src/app/services/state-manager.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-select-item',
   templateUrl: './select-item.page.html',
   styleUrls: ['./select-item.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, TranslateModule]
 })
 export class SelectItemPage implements OnInit {
   userDetails$ = this.stateManagerService.userDetails$;

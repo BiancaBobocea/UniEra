@@ -4,7 +4,7 @@
   <ion-row
     class="header-container ion-justify-content-center ion-align-items-center"
   >
-    <span>Cursuri</span>
+    <span>{{"grading-system.cursuri" | translate}}</span>
   </ion-row>
   <ion-row class="semester-row">
     <ion-col size="6" class="semester-col">
@@ -13,7 +13,7 @@
         expand="block"
         class="semester-btn1"
         [ngClass]="{'active-btn': selectedSemester === '1'}"
-        >Semestrul I</ion-button
+        >{{"grading-system.semestrul" | translate}} I</ion-button
       >
     </ion-col>
     <ion-col size="6" class="semester-col">
@@ -22,7 +22,7 @@
         expand="block"
         class="semester-btn2"
         [ngClass]="{'active-btn': selectedSemester === '2'}"
-        >Semestrul II</ion-button
+        >{{"grading-system.semestrul" | translate}} II</ion-button
       >
     </ion-col>
   </ion-row>
@@ -30,7 +30,7 @@
     *ngIf="{listaMaterii: listaMaterii$ | async, user: user$ | async, userDetails: userDetails$ | async} as details"
     class="table-content"
   >
-    <span class="table-title">Denumire Materie</span>
+    <span class="table-title">{{"grading-system.denumire-materie" | translate}}</span>
     <ng-container *ngIf="details.userDetails.role === 'teacher'; else studentTemplate">
       <ion-row *ngFor="let materie of details.listaMaterii">
         <ion-col size="12"

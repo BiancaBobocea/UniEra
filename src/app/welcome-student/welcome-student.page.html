@@ -1,73 +1,121 @@
-<div class="welcome-student" *ngIf="{userDetails: userDetails$ | async} as user">
-    <ion-row *ngIf="userNotifications$ | async as userNotifications">
-        <ion-col size="8" class="welcome-title">Salutare, {{user?.userDetails?.firstName}}</ion-col>
-        <ion-col size="4" class="header-icons">
-            <div id="notifications-trigger-2">
-                <ion-badge color="danger" *ngIf="userNotifications.length > 0">{{userNotifications.length}}</ion-badge>
-                <ion-icon name="notifications"> </ion-icon>
-              </div>
-                <ion-popover trigger="notifications-trigger-2" triggerAction="click">
-                <ng-template>
-                    <ion-content class="ion-padding">
-                        <app-notifications></app-notifications>
-                    </ion-content>
-                </ng-template>
-                </ion-popover>
-            <ion-icon name="earth"></ion-icon>
+<div
+  class="welcome-student"
+  *ngIf="{userDetails: userDetails$ | async} as user"
+>
+  <ion-row *ngIf="userNotifications$ | async as userNotifications">
+    <ion-col size="8" class="welcome-title"
+      >{{ "welcome-student.welcome" | translate }},
+      {{user?.userDetails?.firstName}}</ion-col
+    >
+    <ion-col size="4" class="header-icons">
+      <div id="notifications-trigger-2">
+        <ion-badge color="danger" *ngIf="userNotifications.length > 0"
+          >{{userNotifications.length}}</ion-badge
+        >
+        <ion-icon name="notifications"> </ion-icon>
+      </div>
+      <ion-popover trigger="notifications-trigger-2" triggerAction="click">
+        <ng-template>
+          <ion-content class="ion-padding">
+            <app-notifications></app-notifications>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+      <ion-icon name="earth" id="language-select-trigger-2"></ion-icon>
+      <ion-popover trigger="language-select-trigger-2" triggerAction="click" class="language-popover">
+        <ng-template>
+            <div class="language-select-container">
+                <span (click)="selectLanguage('ro')">{{ "welcome-student.romana" | translate }}</span>
+                <span (click)="selectLanguage('en')">{{ "welcome-student.engleza" | translate }}</span>
+            </div>
+        </ng-template>
+      </ion-popover>
+    </ion-col>
+  </ion-row>
+  <div class="week-container">
+    <ion-grid class="container">
+      <ion-row
+        class="scheduled-container ion-justify-content-center ion-align-items-center"
+      >
+        <span
+        >{{ "welcome-student.orar-astăzi" | translate }}</span>
+      </ion-row>
+      <ion-row
+        class="date-container ion-justify-content-center ion-align-items-center"
+      >
+        <span>{{currentDate}}</span>
+        <ion-icon class="next-week" name="arrow-forward" (click)="showOtherWeekTimetable('next')"></ion-icon>
+        <ion-icon class="previous-week" name="arrow-back" (click)="showOtherWeekTimetable('previous')"></ion-icon>
+      </ion-row>
+      <ion-row
+        class="week-days-container ion-justify-content-center ion-align-items-center"
+      >
+        <ion-col
+          *ngFor="let day of currentWeek; let i=index"
+          class="week-day"
+          [class.active]="day.active"
+          [class.current]="day.current && indexOfSelectedWeek === 0"
+          size="2"
+          (click)="selectDay(i)"
+        >
+          {{day.name}}
         </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <p class="time-table-header"
+    >{{ "welcome-student.orar" | translate }}</p>
+    <ion-row
+      class="class-container"
+      *ngFor="let class of currentWeek[activeDayIndex].schedule"
+      size="12"
+    >
+      <ion-col
+        size="2"
+        class="flex ion-justify-content-center ion-align-items-center"
+        >{{class.startHour}}</ion-col
+      >
+      <ion-col
+        size="1"
+        class="course-bullet-point flex ion-justify-content-center ion-align-items-center"
+      >
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <div class="vl"></div>
+      </ion-col>
+      <ion-col size="9">
+        <div
+          class="course-name flex ion-justify-content-between ion-align-items-center"
+          [ngClass]="{'free-bg': class.classType === 'FREE', 'course-bg': class.classType === 'COURSE', 'lab-bg': class.classType === 'LAB'}"
+        >
+          <span> {{class.className}} </span>
+          <span> {{class?.room}} </span>
+        </div>
+      </ion-col>
     </ion-row>
-    <div class="week-container">
-        <ion-grid class="container">
-            <ion-row class="scheduled-container ion-justify-content-center ion-align-items-center">
-                <span>Orele de astăzi</span>
-            </ion-row>
-            <ion-row class="date-container ion-justify-content-center ion-align-items-center">
-                <span>{{currentDate}}</span>
-            </ion-row>
-            <ion-row class="week-days-container ion-justify-content-center ion-align-items-center">
-                <ion-col *ngFor="let day of currentWeek; let i=index" class="week-day" [class.active]="day.active" size="2" (click)="selectDay(i)">
-                    {{day.name}}
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-    <div>
-        <p class="time-table-header">Orar</p>
-        <ion-row class="class-container" *ngFor="let class of currentWeek[activeDayIndex].schedule" size="12">
-            <ion-col size="2" class="flex ion-justify-content-center ion-align-items-center">{{class.startHour}}</ion-col>
-            <ion-col size="1" class="course-bullet-point flex ion-justify-content-center ion-align-items-center">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                <div class="vl"></div>
-            </ion-col>
-            <ion-col size="9">
-                <div class="course-name flex ion-justify-content-between ion-align-items-center" [ngClass]="{'free-bg': class.classType === 'FREE', 'course-bg': class.classType === 'COURSE', 'lab-bg': class.classType === 'LAB'}">
-                    <span>
-                        {{class.className}}
-                    </span>
-                    <span>
-                        {{class?.room}}
-                    </span>
-                </div>
-            </ion-col>
-        </ion-row>
-    </div>
+  </div>
 
-        <ion-row class="flex ion-align-items-center ion-justify-content-center" style="gap: 1rem; margin-top: 1rem;">
-            <ion-col size="3" class="flex ion-justify-content-center ion-align-items-center legend course-bg">
-                <span>
-                    Curs
-                </span> 
-            </ion-col>
-            <ion-col size="4" class="flex ion-justify-content-center ion-align-items-center legend lab-bg">
-                <span>
-                    Laborator
-                </span> 
-            </ion-col>
-            <ion-col size="3" class="flex ion-justify-content-center ion-align-items-center legend free-bg">
-                <span>
-                    Pauză
-                </span> 
-            </ion-col>
-        </ion-row>
-
+  <ion-row
+    class="flex ion-align-items-center ion-justify-content-center"
+    style="gap: 1rem; margin-top: 1rem"
+  >
+    <ion-col
+      size="3"
+      class="flex ion-justify-content-center ion-align-items-center legend course-bg"
+    >
+      <span> {{ "welcome-student.curs" | translate }} </span>
+    </ion-col>
+    <ion-col
+      size="4"
+      class="flex ion-justify-content-center ion-align-items-center legend lab-bg"
+    >
+      <span> {{ "welcome-student.laborator" | translate }} </span>
+    </ion-col>
+    <ion-col
+      size="3"
+      class="flex ion-justify-content-center ion-align-items-center legend free-bg"
+    >
+      <span> {{ "welcome-student.pauza" | translate }} </span>
+    </ion-col>
+  </ion-row>
 </div>

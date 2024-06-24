@@ -30,6 +30,8 @@
     "@capacitor/status-bar": "^6.0.0",
     "@capawesome/capacitor-file-picker": "^6.0.0",
     "@ionic/angular": "^7.5.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "firebase": "^10.9.0",
     "ionic-horizontal-calendar": "^1.0.5",
     "ionicons": "^7.2.2",

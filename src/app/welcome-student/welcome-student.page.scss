@@ -58,6 +58,11 @@
     margin: 0 .2rem;
     border-radius: 10px;
 
+    &.current {
+        border: 3px solid var(--ion-color-secondary);
+        color: var(--ion-color-secondary);
+    }
+
     &.active {
         background-color: var(--ion-color-secondary);
         color: #fff;
@@ -110,8 +115,23 @@
     background-color: rgba($color: #6D7369, $alpha: 0.6)
 }
 
+.next-week {
+    position: absolute;
+    right: 3rem;
+    font-size: 26px;
+}
+
+.previous-week {
+    position: absolute;
+    left: 3rem;
+    font-size: 26px;
+}
+
 ion-popover {
     --width: 80%;
+    &.language-popover {
+        --width: 50%;
+    }
 }
 
 ion-badge {
@@ -119,6 +139,13 @@ ion-badge {
     position: absolute;
     margin-top: -.3rem;
     margin-left: .7rem;
+}
+
+.language-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: .5rem;
 }
 
 ::ng-deep .popover-viewport {

@@ -1,17 +1,17 @@
 <ion-grid class="buttons-container ion-align-items-center"  *ngIf="(userDetails$ | async) as userDetails">
   <ion-row class="menu-item" routerLink="../general">
-    <span>Informații generale</span>
+    <span>{{"profile.informatii-generale" | translate}}</span>
     <ion-icon name="arrow-forward"></ion-icon>
   </ion-row>
   <ion-row class="menu-item" routerLink="../notifications">
-    <span>Notificări</span>
+    <span>{{"profile.notificari" | translate}}</span>
     <ion-icon name="arrow-forward"></ion-icon>
   </ion-row>
   <ion-row class="menu-item" routerLink="../payment" *ngIf="userDetails.role === 'student'">
-    <span>Plăți</span>
+    <span>{{"profile.plati" | translate}}</span>
     <ion-icon name="arrow-forward"></ion-icon>
   </ion-row>
   <ion-row class="menu-item" (click)="logout()">
-    <span>Ieși din cont</span>
+    <span>{{"profile.iesi" | translate}}</span>
   </ion-row>
 </ion-grid>

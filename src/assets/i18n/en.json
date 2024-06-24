@@ -1,0 +1,51 @@
+{
+    "welcome-student": {
+        "welcome": "Welcome",
+        "orar-astăzi": "Today's Timetable",
+        "orar": "Timetable",
+        "curs": "Course",
+        "laborator": "Laboratory",
+        "pauza": "Break",
+        "romana": "Romanian",
+        "engleza": "English"
+    },
+    "profile": {
+        "informatii-generale": "General information",
+        "notificari": "Notifications",
+        "plati": "Payment",
+        "iesi": "Logout",
+        "schimba-poza-profil": "Change profile picture",
+        "inchide": "Close",
+        "actualizeaza-datele": "Update data"
+    },
+    "grading-system": {
+        "cursuri": "Courses",
+        "semestrul": "Semester",
+        "denumire-materie": "Class Name",
+        "grupa": "Group",
+        "subgrupa": "Subgroup",
+        "specializare": "Speciality",
+        "examen": "Exam",
+        "laborator": "Laboratory",
+        "curs": "Course",
+        "proiect": "Project",
+        "materiale-curs": "Course Materials",
+        "anul": "Year",
+        "pondere": "Percentaje",
+        "nota": "Grade",
+        "procentajul-final": "Final grade",
+        "numar-de-telefon": "Phone Number",
+        "email": "Email"
+    },
+    "payment": {
+        "numePrenume": "Name Surname",
+        "detaliile-cardului": "Card details",
+        "suma-de-plata": "Amount to pay",
+        "nume-card": "Name on the card",
+        "numar-card": "Card Number",
+        "mmyy": "MM/YY",
+        "cvv": "CVV",
+        "anuleaza": "Cancel",
+        "plateste": "Pay"
+    }
+}

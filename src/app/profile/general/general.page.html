@@ -1,41 +1,41 @@
 <ion-grid class="general-container" *ngIf="{userDetails: userDetails$ | async, user: user$ | async} as userDetails">
-  Informații Generale
+  {{"profile.informatii-generale" | translate}}
   <ng-container *ngIf="userDetails.userDetails">
   
     <ion-row class="prop">
-      <span class="prop-header">Specializare</span>
+      <span class="prop-header">{{"grading-system.specializare" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.specialization}}</span>
     </ion-row>
   
     <ion-row class="prop">
-      <span class="prop-header">Anul</span>
+      <span class="prop-header">{{"grading-system.anul" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.year}}</span>
     </ion-row>
   
     <ion-row class="prop">
-      <span class="prop-header">Grupa</span>
+      <span class="prop-header">{{"grading-system.grupa" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.group}}</span>
     </ion-row>
   
     <ion-row class="prop">
-      <span class="prop-header">Subgrupa</span>
+      <span class="prop-header">{{"grading-system.subgrupa" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.subgroup}}</span>
     </ion-row>
   </ng-container>
 
   <ion-row class="prop">
-    <span class="prop-header">Număr de telefon</span>
+    <span class="prop-header">{{"grading-system.numar-de-telefon" | translate}}</span>
     <span class="prop-value">{{userDetails.userDetails?.phoneNumber}}</span>
   </ion-row>
 
   <ion-row class="prop">
-    <span class="prop-header">Email</span>
+    <span class="prop-header">{{"grading-system.email" | translate}}</span>
     <span class="prop-value">{{userDetails.userDetails?.email}}</span>
   </ion-row>
 
   <ion-row class="button-container ion-justify-content-center ion-align-items-center">
     <ion-col size="10">
-      <ion-button (click)="askForUpdate(userDetails.user)" expand="full" shape="round" color="secondary">Actualizează datele</ion-button>
+      <ion-button (click)="askForUpdate(userDetails.user)" expand="full" shape="round" color="secondary">{{"profile.actualizeaza-datele" | translate}}</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>
