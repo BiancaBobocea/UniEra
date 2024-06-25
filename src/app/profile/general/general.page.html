@@ -1,23 +1,23 @@
 <ion-grid class="general-container" *ngIf="{userDetails: userDetails$ | async, user: user$ | async} as userDetails">
   {{"profile.informatii-generale" | translate}}
   <ng-container *ngIf="userDetails.userDetails">
-  
-    <ion-row class="prop">
+   
+    <ion-row class="prop" *ngIf="userDetails.userDetails.role === 'student'">
       <span class="prop-header">{{"grading-system.specializare" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.specialization}}</span>
     </ion-row>
   
-    <ion-row class="prop">
+    <ion-row class="prop" *ngIf="userDetails.userDetails.role === 'student'">
       <span class="prop-header">{{"grading-system.anul" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.year}}</span>
     </ion-row>
   
-    <ion-row class="prop">
+    <ion-row class="prop" *ngIf="userDetails.userDetails.role === 'student'">
       <span class="prop-header">{{"grading-system.grupa" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.group}}</span>
     </ion-row>
   
-    <ion-row class="prop">
+    <ion-row class="prop" *ngIf="userDetails.userDetails.role === 'student'">
       <span class="prop-header">{{"grading-system.subgrupa" | translate}}</span>
       <span class="prop-value">{{userDetails.userDetails?.subgroup}}</span>
     </ion-row>

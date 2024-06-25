@@ -10,13 +10,13 @@
         "engleza": "Engleză"
     },
     "profile": {
-        "informatii-generale": "Informatii generale",
-        "notificari": "Notificari",
-        "plati": "Plati",
-        "iesi": "Iesi din cont",
-        "schimba-poza-profil": "Schimba poza de profil",
-        "inchide": "Inchide",
-        "actualizeaza-datele": "Actualizeaza Datele"
+        "informatii-generale": "Informații generale",
+        "notificari": "Notificări",
+        "plati": "Plăți",
+        "iesi": "Ieși din cont",
+        "schimba-poza-profil": "Schimbă poza de profil",
+        "inchide": "Închide",
+        "actualizeaza-datele": "Actualizează Datele"
     },
     "grading-system": {
         "cursuri": "Cursuri",
@@ -34,7 +34,7 @@
         "pondere": "Pondere",
         "nota": "Nota",
         "procentajul-final": "Procentajul final",
-        "numar-de-telefon": "Numar de telefon",
+        "numar-de-telefon": "Număr de telefon",
         "email": "Email"
     }
 }

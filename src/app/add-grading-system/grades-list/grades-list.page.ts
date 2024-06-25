@@ -55,7 +55,7 @@ export class GradesListPage implements OnInit {
     elementCurs: string
   ): void {
     this.alertController.create({
-      header: 'Adauga nota',
+      header: 'Adaugă nota',
       inputs: [
         {
           name: 'grade',

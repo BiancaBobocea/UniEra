@@ -1,6 +1,6 @@
 const firebaseErrorCodes = {
-    'auth/invalid-credential': 'Wrong email or password.',
-    'auth/invalid-email': 'Invalid email address.',
+    'auth/invalid-credential': 'Email sau parola gresita',
+    'auth/invalid-email': 'Adresa de email invalida',
     'auth/user-not-found': 'User not found.',
     'auth/wrong-password': 'Incorrect password.',
     'auth/user-disabled': 'User account is disabled.',

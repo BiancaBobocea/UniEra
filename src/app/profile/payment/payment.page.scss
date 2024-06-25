@@ -54,4 +54,14 @@ ion-input {
 ion-grid {
     margin: 2rem;
     margin-top: 12rem;
+    background-color: #e2e6e6;
+}
+
+::ng-deep .profile-picture {
+    z-index: 0 !important;
+}
+
+.payment-page-container {
+    overflow: scroll;
+    padding-bottom: 5rem;
 }

@@ -74,8 +74,8 @@ export class UserDataService {
     const docRef = doc(this.db, 'users', `${userDetails.id}`);
     await updateDoc(docRef, userDetails).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'User updated successfully',
+        header: 'Succes',
+        message: 'Utilizator actualizat cu succes',
         buttons: ['OK'],
       });
 
@@ -86,6 +86,14 @@ export class UserDataService {
   }
 
   async getTimeTable(userDetails: DocumentData) {
+    if (userDetails['role'] === 'student') {
+      this.getTimeTableForStudent(userDetails);
+    } else {
+      this.getTimeTableForTeacher(userDetails);
+    }
+  }
+
+  async getTimeTableForStudent(userDetails: DocumentData) {
     const year = userDetails['year'];
     const specialization = userDetails['specialization'];
     const group = userDetails['group'];
@@ -124,6 +132,36 @@ export class UserDataService {
         this.stateManagerService.updateState({ saptamanaPara });
         this.stateManagerService.updateState({ loading: false });
       });
+  }
+
+  async getTimeTableForTeacher(userDetails: DocumentData) {
+    await this.getClassesList();
+    combineLatest(this.stateManagerService.listaMaterii$, this.stateManagerService.user$).subscribe(async ([materii, user]) => {
+      const materiiPersonale: any[] = [];
+      materii?.forEach(materie => {
+        if(materie.professorList.includes(user?.uid)) {
+          materiiPersonale.push(materie.id);
+        }
+      })
+      
+      const querySaptPara = await getDocs(
+        collection(
+          this.db,
+          'orar',
+          `AIA/anul1/grupa1/subgrupa1/semestrul1/saptamanaPara`
+        )
+      );
+      let saptamanaPara: any = {};
+      querySaptPara.forEach((zi) => {
+        const orar = zi.data()['schedule'];
+        orar.forEach((materie: any) => {
+          if(materiiPersonale.includes(materie.id)) {
+            saptamanaPara[zi.id].push(materie);
+          }
+        });
+        console.log(saptamanaPara);
+      });
+    })
   }
 
   async getTimeTableForAdminSelection(adminSelection: any) {
@@ -234,7 +272,7 @@ export class UserDataService {
 
           const alert = await this.alertController.create({
             header: 'Succes',
-            message: 'Orar adaugat cu succes',
+            message: 'Orar adăugat cu succes.',
             buttons: ['OK'],
           });
 
@@ -285,7 +323,7 @@ export class UserDataService {
       async () => {
         const alert = await this.alertController.create({
           header: 'Succes',
-          message: 'Curs adaugat cu succes',
+          message: 'Curs adăugat cu succes.',
           buttons: ['OK'],
         });
 
@@ -450,8 +488,8 @@ export class UserDataService {
       resolved: false,
     }).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Notification sent successfully',
+        header: 'Succes',
+        message: 'Notificare trimisă cu succes.',
         buttons: ['OK'],
       });
 
@@ -466,8 +504,8 @@ export class UserDataService {
       resolved: true,
     }).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Notification marked as resolved',
+        header: 'Succes',
+        message: 'Notificare marcata ca rezolvata',
         buttons: ['OK'],
       });
 
@@ -484,8 +522,8 @@ export class UserDataService {
       role === 'admin' ? 'admin-notifications' : 'user-notifications';
     await deleteDoc(doc(this.db, collectionName, notification.id)).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Notification removed successfully',
+        header: 'Succes',
+        message: 'Notificare ștearsă cu succes.',
         buttons: ['OK'],
       });
 
@@ -534,8 +572,8 @@ export class UserDataService {
       ...notification,
     }).then(async () => {
       const alert = await this.alertController.create({
-        header: 'Success',
-        message: 'Notification sent successfully',
+        header: 'Succes',
+        message: 'Notificare trimisă cu succes.',
         buttons: ['OK'],
       });
       await alert.present();
